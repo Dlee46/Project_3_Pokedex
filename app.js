@@ -22,8 +22,11 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(__dirname + '/client/build/'));
 
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/client/build/index.html')
+})
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
