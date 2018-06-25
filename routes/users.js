@@ -1,9 +1,10 @@
 var express = require('express');
-var router = express.Router();
+var router = express.Router({ mergeParams: true });
+const { UserModel } = require('../db/schema')
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+router.get('/', async (req, res) => {
+  const user = await UserModel.find()
+  res.json({ user })
+})
 
 module.exports = router;

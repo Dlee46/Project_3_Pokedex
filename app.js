@@ -13,7 +13,6 @@ connection.on('connected', () => {
 connection.on('error', (err) => {
     console.log('Mongoose Error: ' + err)
 })
-const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
 const app = express();
@@ -27,7 +26,7 @@ app.use(express.static(__dirname + '/client/build/'));
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/client/build/index.html')
 })
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+
+app.use('/api/users', usersRouter);
 
 module.exports = app;
