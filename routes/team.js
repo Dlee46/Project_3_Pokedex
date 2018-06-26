@@ -19,12 +19,12 @@ router.get('/:teamId', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-    const user = await UserModel.findById(req.params.userId)
-    const newTeam = await new TeamModel(req.body)
+    let user = await UserModel.findById(req.params.userId)
+    const newTeam = new TeamModel(req.body)
     user.team.push(newTeam)
-    user.save()
+    user = await user.save()
     res.json({
-        newTeam
+        user
     })
 })
 

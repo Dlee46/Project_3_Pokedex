@@ -12,7 +12,7 @@ class App extends Component {
   }
   componentDidMount() {
     axios.get('/api/users').then((res) => {
-      console.log(res.data)
+      console.log("APP CONSOLE", res.data)
       this.setState({ users: res.data.user })
     }).catch((err) => {
       console.error(err)

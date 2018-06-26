@@ -16,7 +16,8 @@ class LogInPage extends Component {
     }
     handleSubmit = (event) => {
         event.preventDefault()
-        axios.get('/api/users', this.state).then((res) => {
+        axios.post('/api/users', this.state).then((res) => {
+            console.log(res.data)
             this.props.history.push(`/users/${res.data._id}`)
         })
     }
@@ -26,7 +27,7 @@ class LogInPage extends Component {
                 <h1>Log In</h1>
                 {this.props.users.map((user) => {
                     return (
-                        <div><Link key={user._id} to={`user/${user._id}`}>{user.userId}</Link></div>
+                        <div key={user._id}><Link key={user._id} to={`user/${user._id}`}>{user.userId}</Link></div>
                     )
                 })}
                 <h1>New Users</h1>

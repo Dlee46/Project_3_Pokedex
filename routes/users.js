@@ -10,8 +10,6 @@ router.get('/:id', async (req, res) => {
   const user = await UserModel.findById(req.params.id)
   res.json({
     user
-  }).catch((err) => {
-    res.json(err)
   })
 })
 router.post('/', (req, res) => {
