@@ -1,13 +1,27 @@
 const express = require('express')
-const router = express.Router()
-const { UserModel, PokedexModel } = require('../db/schema')
+const router = express.Router({ mergeParams: true })
+const { UserModel } = require('../db/schema')
 
-router.get('/', function (req, res) {
-    const user = UserModel.findById(req.params.userId).then((user) => {
-        const pokedex = user.singlePokemon
-        res.json({
-            pokedex
+router.get('/', async (req, res) => {
+    let user = await UserModel.findById(req.params.userId)
+        .populate({
+            path: 'poke',
+            populate: { path: 'singlePokemon' }
         })
+    console.log(user)
+    const pokedex = user.pokedex
+    res.json({
+        pokedex
+    })
+    console.log(req.params.userId)
+})
+
+router.get('/:id', async (req, res) => {
+    const user = await UserModel.findById(req.params.userId)
+    const pokemonId = req.params.id
+    const pokemon = user.pokedex.id(pokemonId)
+    res.json({
+        pokemon
     })
 })
 

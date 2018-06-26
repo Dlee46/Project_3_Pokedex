@@ -10,22 +10,21 @@ const PokemonSchema = new Schema({
     types: [],
     sprites: String,
     moves: [],
-    species: [],
-    team: [{ type: Schema.Types.ObjectId, ref: 'Team' }]
+    species: []
 })
 
 const PokedexSchema = new Schema({
     name: String,
-    type: [],
+    type: String,
     sprites: String,
-    singlePokemon: [{ type: Schema.Types.ObjectId, ref: 'Pokemon' }]
+    pokemon: [{ type: Schema.Types.ObjectId, ref: 'Pokemon' }]
 })
 
 const TeamSchema = new Schema({
     name: String,
     sprites: String,
-    nickname: String
-    // singlePokemon: [{ type: Schema.Types.ObjectId, ref: 'Pokemon' }]
+    nickname: String,
+    pokemon: [{ type: Schema.Types.ObjectId, ref: 'Pokemon' }]
 })
 
 const UserSchema = new Schema({
@@ -38,7 +37,7 @@ const UserSchema = new Schema({
         require: true,
         unique: true
     },
-    poke: [{ type: Schema.Types.ObjectId, ref: 'Pokedex' }],
+    pokedex: [{ type: Schema.Types.ObjectId, ref: 'Pokedex' }],
     team: [{ type: Schema.Types.ObjectId, ref: 'Team' }]
 })
 

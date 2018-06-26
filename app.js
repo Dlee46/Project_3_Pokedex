@@ -29,5 +29,6 @@ app.get('/', (req, res) => {
 
 app.use('/api/users', usersRouter);
 app.use('/api/users/:userId/pokedex', pokeRouter)
+app.use('/api/users/:userId/team')
 
 module.exports = app;
