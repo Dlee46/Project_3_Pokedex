@@ -16,8 +16,7 @@ const PokemonSchema = new Schema({
 const TeamSchema = new Schema({
     name: String,
     sprites: String,
-    nickname: String,
-    pokemon: [{ type: Schema.Types.ObjectId, ref: 'Pokemon' }]
+    pokemon: [PokemonSchema]
 })
 
 const UserSchema = new Schema({
@@ -30,8 +29,7 @@ const UserSchema = new Schema({
         require: true,
         unique: true
     },
-    pokedex: [{ type: Schema.Types.ObjectId, ref: 'Pokedex' }],
-    team: [{ type: Schema.Types.ObjectId, ref: 'Team' }]
+    team: [TeamSchema]
 })
 
 const PokemonModel = mongoose.model('Pokemon', PokemonSchema)

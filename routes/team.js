@@ -4,47 +4,49 @@ const { UserModel, TeamModel } = require('../db/schema')
 
 router.get('/', async (req, res) => {
     const user = await UserModel.findById(req.params.userId)
-        .populate({
-            path: 'team',
-            populate: { path: 'pokemon' }
-        })
-    const team = user.team
     res.json({
-        team
+        user
     })
 })
 
-router.get('/:id', async (req, res) => {
-    const user = await UserModel.find()
-    const pokemonId = req.params._id
-    const pokemon = user.team.id(pokemonId)
+router.get('/:teamId', async (req, res) => {
+    const user = await UserModel.findById(req.params.userId)
+    const teamId = req.params.teamId
+    const team = user.team.id(teamId)
     res.json({
-        pokemon
+        team
     })
 })
 
 router.post('/', async (req, res) => {
     const user = await UserModel.findById(req.params.userId)
     const newTeam = await new TeamModel(req.body)
-    user.pokemon.push(newTeam)
+    user.team.push(newTeam)
     user.save()
     res.json({
         newTeam
     })
 })
 
-router.patch('/:id', async (req, res) => {
-    const teamId = req.params.id
-    const updateTeam = req.body
-    const team = await UserModel.findByIdAndUpdate(teamId, updateTeam)
+router.patch('/:teamId', async (req, res) => {
+    const user = await UserModel.findById(req.params.userId)
+    const team = await user.team.id(req.params.teamId)
+    team.name = req.body.name
+    team.pokemon = req.body.pokemon
+    user.save()
     res.json({
-        team
+        user
     })
 })
 
-router.delete('/:id', async (req, res) => {
-    await UserModel.findByIdAndRemove(req.params.id)
-    res.redirect(`/team`)
+router.delete('/:teamId', async (req, res) => {
+    const user = await UserModel.findById(req.params.userId)
+    const team = await user.team.id(req.params.teamId)
+    team.remove()
+    user.save()
+    res.json({
+        user
+    })
 })
 
 module.exports = router

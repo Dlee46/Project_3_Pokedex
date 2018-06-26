@@ -2,7 +2,7 @@ require('dotenv').config()
 const mongoose = require('mongoose')
 mongoose.connect(process.env.MONGODB_URI)
 
-const { PokedexModel, PokemonModel, TeamModel, UserModel } = require('./schema')
+const { PokemonModel, TeamModel, UserModel } = require('./schema')
 
 
 const pikachu = new PokemonModel({
@@ -14,41 +14,15 @@ const pikachu = new PokemonModel({
 
 const myTeam = new TeamModel({
     name: "team Rocket",
-    pokemon: [pikachu._id]
-})
-
-const bulbapedia = new PokedexModel({
-    pokemon: [pikachu._id]
+    pokemon: [pikachu]
 })
 
 const testUser = new UserModel({
     name: 'Ash',
     userId: 'Test',
-    pokedex: [bulbapedia._id],
-    team: [myTeam._id]
+    team: [myTeam]
 })
 
-seed = async () => {
-    await PokedexModel.remove()
-    await UserModel.remove()
-    await TeamModel.remove()
-    await PokemonModel.remove()
-
-
-    const pokemon = await pikachu.save()
-    console.log('Pika Pika', pokemon)
-
-    const team = await myTeam.save()
-    console.log("Team Saved!", team)
-
-    const pokedex = await bulbapedia.save()
-    console.log("pokedex Saved!", pokedex)
-
-    const user = await testUser.save()
-    console.log('User Saved', user)
-
-
-    mongoose.connection.close()
-}
-
-seed()
+UserModel.remove({})
+    .then(() => testUser.save())
+    .then(() => mongoose.connection.close())
