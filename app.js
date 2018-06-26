@@ -14,7 +14,7 @@ connection.on('error', (err) => {
     console.log('Mongoose Error: ' + err)
 })
 const usersRouter = require('./routes/users');
-
+const pokeRouter = require('./routes/pokedex')
 const app = express();
 
 app.use(logger('dev'));
@@ -28,5 +28,6 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/users', usersRouter);
+app.use('/api/users/:userId/pokedex', pokeRouter)
 
 module.exports = app;
