@@ -13,13 +13,6 @@ const PokemonSchema = new Schema({
     species: []
 })
 
-const PokedexSchema = new Schema({
-    name: String,
-    type: String,
-    sprites: String,
-    pokemon: [{ type: Schema.Types.ObjectId, ref: 'Pokemon' }]
-})
-
 const TeamSchema = new Schema({
     name: String,
     sprites: String,
@@ -41,14 +34,12 @@ const UserSchema = new Schema({
     team: [{ type: Schema.Types.ObjectId, ref: 'Team' }]
 })
 
-const PokedexModel = mongoose.model('Pokedex', PokedexSchema)
 const PokemonModel = mongoose.model('Pokemon', PokemonSchema)
 const TeamModel = mongoose.model('Team', TeamSchema)
 const UserModel = mongoose.model('User', UserSchema)
 
 module.exports = {
     PokemonModel,
-    PokedexModel,
     TeamModel,
     UserModel
 }

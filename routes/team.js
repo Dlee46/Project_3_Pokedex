@@ -3,15 +3,20 @@ const router = express.Router({ mergeParams: true })
 const { UserModel, TeamModel } = require('../db/schema')
 
 router.get('/', async (req, res) => {
-    const user = await UserModel.find()
+    const user = await UserModel.findById(req.params.userId)
+        .populate({
+            path: 'team',
+            populate: { path: 'pokemon' }
+        })
+    const team = user.team
     res.json({
-        user
+        team
     })
 })
 
 router.get('/:id', async (req, res) => {
     const user = await UserModel.find()
-    const pokemonId = req.params.id
+    const pokemonId = req.params._id
     const pokemon = user.team.id(pokemonId)
     res.json({
         pokemon
@@ -19,8 +24,10 @@ router.get('/:id', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
+    const user = await UserModel.findById(req.params.userId)
     const newTeam = await new TeamModel(req.body)
-    newTeam.save()
+    user.pokemon.push(newTeam)
+    user.save()
     res.json({
         newTeam
     })

@@ -5,8 +5,8 @@ const { UserModel } = require('../db/schema')
 router.get('/', async (req, res) => {
     let user = await UserModel.findById(req.params.userId)
         .populate({
-            path: 'poke',
-            populate: { path: 'singlePokemon' }
+            path: 'pokedex',
+            populate: { path: 'pokemon' }
         })
     console.log(user)
     const pokedex = user.pokedex
@@ -18,10 +18,16 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     const user = await UserModel.findById(req.params.userId)
-    const pokemonId = req.params.id
-    const pokemon = user.pokedex.id(pokemonId)
+        .populate({
+            path: 'pokedex',
+            populate: {
+                path: 'pokemon',
+                select: '_id'
+            }
+        })
+    const pokedex = user.pokedex._id
     res.json({
-        pokemon
+        pokedex
     })
 })
 
