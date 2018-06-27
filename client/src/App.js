@@ -22,12 +22,15 @@ class App extends Component {
     const LogInComponent = (props) => (
       <LogInPage users={this.state.users} {...props} />
     )
+
+    const TeamPageComponent = (props) => <TeamPage users={this.state.users} {...props} />
+
     return (
       <Router>
         <div>
           <Switch>
             <Route exact path='/login' render={LogInComponent} />
-            <Route exact path='/user/:userId' component={TeamPage} />
+            <Route exact path='/user/:userId' render={TeamPageComponent} />
           </Switch>
         </div>
       </Router>
