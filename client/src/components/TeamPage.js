@@ -40,6 +40,7 @@ class TeamPage extends Component {
     deleteTeam = (teamId) => {
         const userId = this.props.match.params.userId
         axios.delete(`/api/users/${userId}/team/${teamId}`).then((res) => {
+            console.log("DELETE", res.data.user)
             this.setState({
                 user: res.data.user,
                 team: res.data.user.team
@@ -60,15 +61,31 @@ class TeamPage extends Component {
         const userId = this.props.match.params.userId
         axios.post(`/api/users/${userId}/team`, this.state).then((res) => {
             return (
-                this.props.history.push(`/users/${userId}/team`)
+                this.props.history.push(`/users/${userId}/team/`)
             )
         })
     }
     render() {
         console.log("CONSOLE PATH", this.state.user)
+        console.log(this.state)
+        // since the log shows empty of the first render we use an if statement
         if (this.state.user) {
             console.log("CONSOLE TEAM", this.state.user.team[0]._id)
         }
+        const user = this.state.user || {}
+        const team = user.team || []
+        const listOfTeams = team.map(team => {
+            const userId = this.props.match.params.userId
+            const teamUrl = `/users/${userId}/team/${team._id}`
+            return (
+                <div key={team._id}>
+                    <Link to={teamUrl}>{team.name}</Link>
+                    <button onClick={() => this.deleteTeam(team._id)}>Delete</button>
+                </div>
+            )
+        })
+
+
 
         return (
             <div>
@@ -80,17 +97,7 @@ class TeamPage extends Component {
                     <button>New Team</button>
                 </form>
                 <div>
-                    {/* {this.props.team.map((team, i) => {
-                        const userId = this.props.match.params.userId
-                        console.log(userId);
-
-                        return (
-                            <div key={i}>
-                                <Link to={`/users/${userId}/team`}>{team.name}</Link>
-                                <button onClick={() => this.deleteTeam(team._id)}>Delete</button>
-                            </div>
-                        )
-                    })} */}
+                    {listOfTeams}
                 </div>
             </div>
         );
