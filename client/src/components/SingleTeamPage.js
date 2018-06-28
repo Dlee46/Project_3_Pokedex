@@ -4,7 +4,10 @@ import { Link } from 'react-router-dom'
 
 class SingleTeamPage extends Component {
     state = {
-        pokemon: [],
+        team: {
+            name: '',
+            pokemon: []
+        },
         editTeamName: false
     }
     toggleEdit = () => {
@@ -15,34 +18,42 @@ class SingleTeamPage extends Component {
         const userId = this.props.match.params.userId
         const teamId = this.props.match.params.teamId
         axios.get(`/api/users/${userId}/team/${teamId}`).then((res) => {
+            console.log(res.data)
             this.setState({
-                pokemon: res.data.team.pokemon
+                team: res.data.team
             })
         })
     }
-    updateTeam = (teamId) => {
+    updateTeam = (event) => {
+        event.preventDefault()
         const userId = this.props.match.params.userId
-        const teamToUpdate = this.state.team.find(team => team._id === teamId)
-        axios.patch(`/api/users/${userId}/team/${teamId}`, teamToUpdate).then((res) => {
-            this.setState({
-                user: res.data.user,
-                team: res.data.user.team
+        const teamId = this.props.match.params.teamId
+
+        axios.patch(`/api/users/${userId}/team/${teamId}`, this.state.team)
+            .then((res) => {
+                console.log('API RESPONSE', res.data)
+                this.setState({
+                    team: res.data.team
+                })
             })
-        })
     }
+
     handleChange = (event) => {
         const inputName = event.target.name
         const userInput = event.target.value
+        const team = { ...this.state.team }
+        team[inputName] = userInput
         this.setState({
-            [inputName]: userInput
+            team
         })
     }
     deletePokemon = (pokemonId) => {
         const userId = this.props.match.params.userId
         const teamId = this.props.match.params.teamId
         axios.delete(`/api/users/${userId}/team/${teamId}/pokemon/${pokemonId}`).then((res) => {
+            console.log('DELETED POKEMON, response', res.data)
             this.setState({
-                pokemon: res.data.team.pokemon
+                team: res.data.team
             })
         })
     }
@@ -50,7 +61,7 @@ class SingleTeamPage extends Component {
         this.getTeamInfo()
     }
     render() {
-        const pokemon = this.state.pokemon || []
+        const pokemon = this.state.team.pokemon || []
         const listOfPokemon = pokemon.map(pokemon => {
             const userId = this.props.match.params.userId
             const teamId = this.props.match.params.teamId
@@ -64,7 +75,7 @@ class SingleTeamPage extends Component {
         })
         return (
             <div>
-                {/* <h1>{this.state.team.name}</h1> */}
+                <h1>{this.state.team.name}</h1>
                 {listOfPokemon}
                 <div>
                     {this.state.editTeamName ?
@@ -72,8 +83,7 @@ class SingleTeamPage extends Component {
                             <form onSubmit={this.updateTeam}>
                                 <input type="text"
                                     name="name"
-                                    // value={}
-                                    // placeholder={}
+                                    value={this.state.team.name}
                                     onChange={this.handleChange} />
                                 <button>Save</button>
                             </form>
@@ -84,7 +94,7 @@ class SingleTeamPage extends Component {
                 <div>
                     <button onClick={this.toggleEdit}>
                         {this.state.editTeamName
-                            ? 'Hide'
+                            ? 'Finished'
                             : 'Edit Team'
                         }
                     </button>

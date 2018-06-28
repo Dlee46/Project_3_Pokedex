@@ -35,7 +35,7 @@ router.patch('/:teamId', async (req, res) => {
     team.pokemon = req.body.pokemon
     user.save()
     res.json({
-        user
+        team
     })
 })
 
