@@ -4,7 +4,12 @@ import { Link } from 'react-router-dom'
 
 class SingleTeamPage extends Component {
     state = {
-        pokemon: []
+        pokemon: [],
+        editTeamName: false
+    }
+    toggleEdit = () => {
+        const editTeamName = !this.state.editTeamName
+        this.setState({ editTeamName })
     }
     getTeamInfo() {
         const userId = this.props.match.params.userId
@@ -23,6 +28,13 @@ class SingleTeamPage extends Component {
                 user: res.data.user,
                 team: res.data.user.team
             })
+        })
+    }
+    handleChange = (event) => {
+        const inputName = event.target.name
+        const userInput = event.target.value
+        this.setState({
+            [inputName]: userInput
         })
     }
     deletePokemon = (pokemonId) => {
@@ -50,14 +62,30 @@ class SingleTeamPage extends Component {
                 </div>
             )
         })
-
         return (
             <div>
-                {/* {titleOfTeam} */}
+                {/* <h1>{this.state.team.name}</h1> */}
                 {listOfPokemon}
+                <div>
+                    {this.state.editTeamName ?
+                        <div>
+                            <form onSubmit={this.updateTeam}>
+                                <input type="text"
+                                    name="name"
+                                    // value={}
+                                    // placeholder={}
+                                    onChange={this.handleChange} />
+                                <button>Save</button>
+                            </form>
+                        </div>
+                        : null
+                    }
+                </div>
+
             </div>
         );
     }
 }
 
 export default SingleTeamPage;
+
