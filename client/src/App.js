@@ -5,12 +5,13 @@ import styled from 'styled-components'
 import axios from 'axios'
 import LogInPage from './components/LogInPage';
 import TeamPage from './components/TeamPage';
+import SingleTeamPage from './components/SingleTeamPage';
 
 class App extends Component {
   state = {
     users: []
   }
-  componentDidMount() {
+  getUserInfo() {
     axios.get('/api/users').then((res) => {
       console.log("APP CONSOLE", res.data)
       this.setState({ users: res.data.user })
@@ -18,12 +19,20 @@ class App extends Component {
       console.error(err)
     })
   }
+  componentDidMount() {
+    this.getUserInfo
+  }
   render() {
     const LogInComponent = (props) => (
       <LogInPage users={this.state.users} {...props} />
     )
 
-    const TeamPageComponent = (props) => <TeamPage users={this.state.users} {...props} />
+    const TeamPageComponent = (props) => (
+      <TeamPage users={this.state.users} {...props} />
+    )
+    const SingleTeamComponent = (props) => (
+      <SingleTeamPage users={this.state.users} {...props} />
+    )
 
     return (
       <Router>
@@ -31,6 +40,7 @@ class App extends Component {
           <Switch>
             <Route exact path='/login' render={LogInComponent} />
             <Route exact path='/user/:userId' render={TeamPageComponent} />
+            <Route exact path='/user/:userId/team/:teamId' render={SingleTeamComponent} />
           </Switch>
         </div>
       </Router>
