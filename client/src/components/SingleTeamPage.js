@@ -81,7 +81,14 @@ class SingleTeamPage extends Component {
                         : null
                     }
                 </div>
-
+                <div>
+                    <button onClick={this.toggleEdit}>
+                        {this.state.editTeamName
+                            ? 'Hide'
+                            : 'Edit Team'
+                        }
+                    </button>
+                </div>
             </div>
         );
     }
