@@ -19,7 +19,6 @@ class TeamPage extends Component {
     deleteTeam = (teamId) => {
         const userId = this.props.match.params.userId
         axios.delete(`/api/users/${userId}/team/${teamId}`).then((res) => {
-            console.log("DELETE", res.data.user)
             this.setState({
                 user: res.data.user,
                 team: res.data.user.team
@@ -29,8 +28,6 @@ class TeamPage extends Component {
     handleChange = (event) => {
         const inputName = event.target.name
         const userInput = event.target.value
-        console.log("inputName", inputName)
-        console.log("userInput", userInput)
         this.setState({
             [inputName]: userInput
         })
@@ -55,7 +52,7 @@ class TeamPage extends Component {
         const team = this.state.team || []
         const listOfTeams = team.map(team => {
             const userId = this.props.match.params.userId
-            const teamUrl = `/users/${userId}/team/${team._id}`
+            const teamUrl = `/user/${userId}/team/${team._id}`
             return (
                 <div key={team._id}>
                     <Link to={teamUrl}>{team.name}</Link>

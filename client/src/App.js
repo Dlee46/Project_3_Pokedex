@@ -6,6 +6,8 @@ import axios from 'axios'
 import LogInPage from './components/LogInPage';
 import TeamPage from './components/TeamPage';
 import SingleTeamPage from './components/SingleTeamPage';
+import Pokemon from './components/Pokemon';
+
 
 class App extends Component {
   state = {
@@ -33,6 +35,9 @@ class App extends Component {
     const SingleTeamComponent = (props) => (
       <SingleTeamPage users={this.state.users} {...props} />
     )
+    const PokemonComponent = (props) => (
+      <Pokemon users={this.state.users} {...props} />
+    )
 
     return (
       <Router>
@@ -41,6 +46,7 @@ class App extends Component {
             <Route exact path='/login' render={LogInComponent} />
             <Route exact path='/user/:userId' render={TeamPageComponent} />
             <Route exact path='/user/:userId/team/:teamId' render={SingleTeamComponent} />
+            <Route exact path='/user/:userId/team/:teamId/pokemon/:pokemonId' render={PokemonComponent} />
           </Switch>
         </div>
       </Router>

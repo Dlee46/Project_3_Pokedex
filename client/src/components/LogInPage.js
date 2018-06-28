@@ -18,7 +18,7 @@ class LogInPage extends Component {
         event.preventDefault()
         axios.post('/api/users', this.state).then((res) => {
             console.log(res.data)
-            this.props.history.push(`/users/${res.data._id}`)
+            this.props.history.push(`/user/${res.data._id}`)
         })
     }
     render() {
