@@ -7,20 +7,19 @@ class TeamPage extends Component {
         user: {},
         team: []
     }
-
-    deleteTeam = (teamId) => {
+    getTeamInfo() {
         const userId = this.props.match.params.userId
-        axios.delete(`/api/users/${userId}/team/${teamId}`).then((res) => {
-            console.log("DELETE", res.data.user)
+        axios.get(`/api/users/${userId}`).then((res) => {
             this.setState({
                 user: res.data.user,
                 team: res.data.user.team
             })
         })
     }
-    componentDidMount() {
+    deleteTeam = (teamId) => {
         const userId = this.props.match.params.userId
-        axios.get(`/api/users/${userId}`).then((res) => {
+        axios.delete(`/api/users/${userId}/team/${teamId}`).then((res) => {
+            console.log("DELETE", res.data.user)
             this.setState({
                 user: res.data.user,
                 team: res.data.user.team
@@ -48,6 +47,9 @@ class TeamPage extends Component {
                 this.props.history.push(`/users/${userId}/team/`)
             )
         })
+    }
+    componentDidMount() {
+        this.getTeamInfo()
     }
     render() {
         const team = this.state.team || []

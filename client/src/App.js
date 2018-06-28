@@ -20,7 +20,7 @@ class App extends Component {
     })
   }
   componentDidMount() {
-    this.getUserInfo
+    this.getUserInfo()
   }
   render() {
     const LogInComponent = (props) => (
