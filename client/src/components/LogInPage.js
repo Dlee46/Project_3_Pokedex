@@ -7,12 +7,38 @@ const PokedexContainer = styled.div`
 height: 100vh;
 background: red;
 text-align: center;
-border-radius:2%;
-margin: 0 10px;
+border-radius:5%;
+margin:10px 20px;
 position: justify;
 border: 1px solid black;
 box-shadow: outset 1px 1px 7px 4px;
 box-shadow: gray 12px 8px 5px 1px;
+.bigWhiteDot{
+border-radius: 20vh;
+background: white;
+height: 70px;
+width: 70px;
+box-shadow: none;
+}
+.redDot{
+    position:absolute;
+    border-radius: 10vh;
+    height:20px;
+    width: 20px;
+    background: red;
+    border: 1px solid black;
+    left: 130px;
+    top: 20px;
+    box-shadow: none;
+}
+
+`
+const BlueDot = styled.div`
+position: absolute;
+height: 65px;
+width: 65px;
+border-radius: 20vh;
+background: skyblue;
 `
 const LoginContainer = styled.div`
 margin-top: 10px;
@@ -45,6 +71,13 @@ class LogInPage extends Component {
     render() {
         return (
             <PokedexContainer>
+                <PokedexContainer className="bigWhiteDot">
+                    <BlueDot>
+                    </BlueDot>
+                </PokedexContainer>
+                <PokedexContainer className="redDot"></PokedexContainer>
+                <PokedexContainer className="yellowDot"></PokedexContainer>
+                <PokedexContainer className="greenDot"></PokedexContainer>
                 <LoginContainer>
                     <h1>Log In</h1>
                     {this.props.users.map((user) => {
