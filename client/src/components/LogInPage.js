@@ -27,7 +27,18 @@ box-shadow: none;
     width: 20px;
     background: red;
     border: 1px solid black;
-    left: 130px;
+    left: 120px;
+    top: 20px;
+    box-shadow: none;
+}
+.yellowDot{
+    position:absolute;
+    border-radius: 10vh;
+    height:20px;
+    width: 20px;
+    background: yellow;
+    border: 1px solid black;
+    left: 150px;
     top: 20px;
     box-shadow: none;
 }
