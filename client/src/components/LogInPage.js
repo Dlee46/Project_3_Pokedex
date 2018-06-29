@@ -9,8 +9,10 @@ background: red;
 text-align: center;
 border-radius:2%;
 margin: 0 10px;
-position: absolute;
+position: justify;
 border: 1px solid black;
+box-shadow: outset 1px 1px 7px 4px;
+box-shadow: gray 12px 8px 5px 1px;
 `
 const LoginContainer = styled.div`
 margin-top: 10px;
