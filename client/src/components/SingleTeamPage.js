@@ -9,22 +9,16 @@ class SingleTeamPage extends Component {
             pokemon: []
         },
         editTeamName: false,
-        pokedex: [],
+        pokedex: {},
         showPokemon: false,
     }
-    addPokemon = () => {
-        console.log('You clicked Approve')
+    addPokemon = (event) => {
         const userId = this.props.match.params.userId
         const teamId = this.props.match.params.teamId
-        const catchEmAll = {
-            team: {
-                pokemon: []
-            }
-        }
-        axios.post(`/api/users/${userId}/team/${teamId}`, catchEmAll).then((res) => {
-            const savedPokemonClone = [...this.state.team.pokemon]
-            savedPokemonClone.push(catchEmAll)
-            this.setState({ team: savedPokemonClone })
+        const newPokemon = { ...this.state.pokedex }
+        console.log(newPokemon)
+        axios.post(`/api/users/${userId}/team/${teamId}/pokemon`, newPokemon).then((res) => {
+            this.setState({ team: res.data })
         })
     }
     toggleEdit = () => {
@@ -75,16 +69,22 @@ class SingleTeamPage extends Component {
             pokedex,
             showPokemon: false
         })
-        console.log("keystrokes", pokedex)
     }
     getPokemonApi = () => {
-        axios.get(`https://pokeapi.co/api/v2/pokemon/${this.state.pokedex.name}/`).then((res) => {
-            this.setState({
-                pokedex: res.data,
-                showPokemon: true
+        axios.get(`https://pokeapi.co/api/v2/pokemon/${this.state.pokedex.name}/`)
+            .then((res) => {
+                const pokedex = {
+                    name: res.data.name,
+                    id: res.data.id,
+                    sprites: res.data.sprites,
+                    types: res.data.types
+                }
+                this.setState({
+                    pokedex,
+                    showPokemon: true
+                })
+                console.log(res.data)
             })
-            console.log("POKEMON API", this.state.pokedex)
-        })
     }
     deletePokemon = (pokemonId) => {
         const userId = this.props.match.params.userId
@@ -117,13 +117,11 @@ class SingleTeamPage extends Component {
             <div>
                 <div>
                     <div>
-
                         <input type="text"
                             name="name"
                             placeholder="Pokemon"
                             onChange={this.pokedexHandleChange} />
                         <button onClick={this.getPokemonApi}>Search</button>
-
                     </div>
                 </div>
                 {this.state.showPokemon ?

@@ -18,12 +18,13 @@ router.get('/:pokemonId', async (req, res) => {
         pokemon
     })
 })
+
 router.post('/', async (req, res) => {
     const user = await UserModel.findById(req.params.userId)
     const team = await user.team.id(req.params.teamId)
-    const newTeam = new TeamModel(req.body)
-    team.pokemon.push(newTeam)
-    team.save()
+    const newPokemon = new TeamModel(req.body)
+    team.pokemon.push(newPokemon)
+    user.save()
     res.json({
         team
     })
