@@ -12,6 +12,21 @@ class SingleTeamPage extends Component {
         pokedex: [],
         showPokemon: false,
     }
+    addPokemon = () => {
+        console.log('You clicked Approve')
+        const userId = this.props.match.params.userId
+        const teamId = this.props.match.params.teamId
+        const catchEmAll = {
+            team: {
+                pokemon: []
+            }
+        }
+        axios.post(`/api/users/${userId}/team/${teamId}`, catchEmAll).then((res) => {
+            const savedPokemonClone = [...this.state.team.pokemon]
+            savedPokemonClone.push(catchEmAll)
+            this.setState({ team: savedPokemonClone })
+        })
+    }
     toggleEdit = () => {
         const editTeamName = !this.state.editTeamName
         this.setState({ editTeamName })
@@ -57,17 +72,18 @@ class SingleTeamPage extends Component {
         const pokedex = { ...this.state.pokedex }
         pokedex[inputName] = userInput
         this.setState({
-            pokedex
+            pokedex,
+            showPokemon: false
         })
-        console.log(pokedex)
+        console.log("keystrokes", pokedex)
     }
     getPokemonApi = () => {
-        console.log("POKEMON API", this.state.pokedex)
         axios.get(`https://pokeapi.co/api/v2/pokemon/${this.state.pokedex.name}/`).then((res) => {
-
             this.setState({
-                pokedex: res.data.results
+                pokedex: res.data,
+                showPokemon: true
             })
+            console.log("POKEMON API", this.state.pokedex)
         })
     }
     deletePokemon = (pokemonId) => {
@@ -84,6 +100,7 @@ class SingleTeamPage extends Component {
         this.getPokemonApi()
     }
     render() {
+        const pokedex = this.state.pokedex
         const pokemon = this.state.team.pokemon || []
         const listOfPokemon = pokemon.map(pokemon => {
             const userId = this.props.match.params.userId
@@ -99,7 +116,6 @@ class SingleTeamPage extends Component {
         return (
             <div>
                 <div>
-                    {/* {this.state.editTeamName ? */}
                     <div>
 
                         <input type="text"
@@ -109,9 +125,16 @@ class SingleTeamPage extends Component {
                         <button onClick={this.getPokemonApi}>Search</button>
 
                     </div>
-                    {/* : null
-                     } */}
                 </div>
+                {this.state.showPokemon ?
+                    <div>
+                        <h1>#{pokedex.id} {pokedex.name}</h1>
+                        <img src={pokedex.sprites ? pokedex.sprites.front_default : null} alt={pokedex.name} />
+                        {/* <h4>{pokedex.types}</h4> */}
+                        <button onClick={this.addPokemon}>+</button>
+                    </div>
+                    : null
+                }
                 <h1>{this.state.team.name}</h1>
                 {listOfPokemon}
                 <div>

@@ -3,7 +3,8 @@ import axios from 'axios'
 
 class Pokemon extends Component {
     state = {
-        pokemon: []
+        pokemon: [],
+        pokedex: []
     }
     getTeamInfo() {
         const userId = this.props.match.params.userId
@@ -15,6 +16,24 @@ class Pokemon extends Component {
             })
         })
     }
+    pokedexHandleChange = (event) => {
+        const inputName = event.target.name
+        const userInput = event.target.value
+        const pokedex = { ...this.state.pokedex }
+        pokedex[inputName] = userInput
+        this.setState({
+            pokedex
+        })
+        console.log("keystrokes", pokedex)
+    }
+    getPokemonApi = () => {
+        axios.get(`https://pokeapi.co/api/v2/pokemon/${this.state.pokedex.name}/`).then((res) => {
+            this.setState({
+                pokedex: res.data
+            })
+            console.log("POKEMON API", this.state.pokedex)
+        })
+    }
     componentDidMount() {
         this.getTeamInfo()
     }
@@ -22,6 +41,15 @@ class Pokemon extends Component {
         const pokemon = this.state.pokemon
         return (
             < div >
+                <div>
+
+                    <input type="text"
+                        name="name"
+                        placeholder="Pokemon"
+                        onChange={this.pokedexHandleChange} />
+                    <button onClick={this.getPokemonApi}>Search</button>
+
+                </div>
                 <img src={pokemon.sprites} alt="" />
                 <h1>{pokemon.name}</h1>
                 <h3># {pokemon.order}</h3>
