@@ -42,7 +42,17 @@ box-shadow: none;
     top: 20px;
     box-shadow: none;
 }
-
+.greenDot{
+    position:absolute;
+    border-radius: 10vh;
+    height:20px;
+    width: 20px;
+    background: green;
+    border: 1px solid black;
+    left: 180px;
+    top: 20px;
+    box-shadow: none;
+}
 `
 const BlueDot = styled.div`
 position: absolute;
