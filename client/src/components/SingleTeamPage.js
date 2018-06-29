@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import PokedexType from './PokedexType'
 
 class SingleTeamPage extends Component {
     state = {
@@ -16,9 +17,11 @@ class SingleTeamPage extends Component {
         const userId = this.props.match.params.userId
         const teamId = this.props.match.params.teamId
         const newPokemon = { ...this.state.pokedex }
-        console.log(newPokemon)
         axios.post(`/api/users/${userId}/team/${teamId}/pokemon`, newPokemon).then((res) => {
-            this.setState({ team: res.data })
+            this.setState({
+                team: res.data,
+                showPokemon: false
+            })
         })
     }
     toggleEdit = () => {
@@ -75,15 +78,17 @@ class SingleTeamPage extends Component {
             .then((res) => {
                 const pokedex = {
                     name: res.data.name,
+                    height: res.data.height,
+                    weight: res.data.weight,
                     id: res.data.id,
-                    sprites: res.data.sprites,
-                    types: res.data.types
+                    sprites: res.data.sprites.front_default,
+                    types: res.data.types,
                 }
                 this.setState({
                     pokedex,
                     showPokemon: true
                 })
-                console.log(res.data)
+                // console.log(this.state.pokedex)
             })
     }
     deletePokemon = (pokemonId) => {
@@ -100,14 +105,21 @@ class SingleTeamPage extends Component {
         this.getPokemonApi()
     }
     render() {
-        const pokedex = this.state.pokedex
+        const pokedex = this.state.pokedex || []
         const pokemon = this.state.team.pokemon || []
+        const pokedexTypes = pokedex.types || []
+        const listOfTypes = pokedexTypes.map((eachType, i) => {
+            return (
+                <PokedexType key={i} pokedextype={eachType} />
+            )
+        })
         const listOfPokemon = pokemon.map(pokemon => {
             const userId = this.props.match.params.userId
             const teamId = this.props.match.params.teamId
             const pokemonUrl = `/user/${userId}/team/${teamId}/pokemon/${pokemon._id}`
             return (
                 <div key={pokemon._id}>
+                    <img src={pokemon.sprites} alt={pokemon.name} />
                     <Link to={pokemonUrl}>{pokemon.name}</Link>
                     <button onClick={() => this.deletePokemon(pokemon._id)}>Delete</button>
                 </div>
@@ -127,8 +139,8 @@ class SingleTeamPage extends Component {
                 {this.state.showPokemon ?
                     <div>
                         <h1>#{pokedex.id} {pokedex.name}</h1>
-                        <img src={pokedex.sprites ? pokedex.sprites.front_default : null} alt={pokedex.name} />
-                        {/* <h4>{pokedex.types}</h4> */}
+                        <img src={pokedex.sprites ? pokedex.sprites : null} alt={pokedex.name} />
+                        <h4>{listOfTypes}</h4>
                         <button onClick={this.addPokemon}>+</button>
                     </div>
                     : null

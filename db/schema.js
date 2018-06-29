@@ -5,12 +5,11 @@ const Schema = mongoose.Schema
 const PokemonSchema = new Schema({
     name: String,
     height: Number,
-    Order: Number,
+    id: Number,
     weight: Number,
     types: [],
-    sprites: String,
-    moves: [],
-    species: []
+    sprites: {},
+    moves: []
 })
 
 const TeamSchema = new Schema({

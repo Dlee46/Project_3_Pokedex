@@ -1,10 +1,29 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-
+import PokedexType from './PokedexType'
+import PokedexMove from './PokedexMove'
 class Pokemon extends Component {
     state = {
         pokemon: [],
-        pokedex: []
+        pokedex: {},
+        team: [],
+        showPokemon: false
+    }
+    addPokemon = (event) => {
+        const userId = this.props.match.params.userId
+        const teamId = this.props.match.params.teamId
+        const newPokemon = { ...this.state.pokedex }
+        console.log(newPokemon)
+        axios.post(`/api/users/${userId}/team/${teamId}/pokemon`, newPokemon).then((res) => {
+            this.setState({
+                team: res.data
+                , showPokemon: false
+            })
+        })
+    }
+    togglePokemon = () => {
+        const showPokemon = !this.state.showPokemon
+        this.setState({ showPokemon })
     }
     getTeamInfo() {
         const userId = this.props.match.params.userId
@@ -22,23 +41,39 @@ class Pokemon extends Component {
         const pokedex = { ...this.state.pokedex }
         pokedex[inputName] = userInput
         this.setState({
-            pokedex
+            pokedex,
+            showPokemon: false
         })
         console.log("keystrokes", pokedex)
     }
     getPokemonApi = () => {
-        axios.get(`https://pokeapi.co/api/v2/pokemon/${this.state.pokedex.name}/`).then((res) => {
-            this.setState({
-                pokedex: res.data
+        axios.get(`https://pokeapi.co/api/v2/pokemon/${this.state.pokedex.name}/`)
+            .then((res) => {
+                this.setState({
+                    pokedex: res.data,
+                    showPokemon: true
+                })
+                console.log(res.data)
             })
-            console.log("POKEMON API", this.state.pokedex)
-        })
     }
     componentDidMount() {
         this.getTeamInfo()
     }
     render() {
-        const pokemon = this.state.pokemon
+        const singlePokemon = this.state.pokemon
+        const pokedex = this.state.pokedex || []
+        const pokedexTypes = pokedex.types || []
+        const listOfTypes = pokedexTypes.map((eachType, i) => {
+            return (
+                <PokedexType key={i} pokedextype={eachType} />
+            )
+        })
+        const pokedexMoves = pokedex.moves || []
+        const listOfMoves = pokedexMoves.map((eachMove, i) => {
+            return (
+                <PokedexMove key={i} pokedexmove={eachMove} />
+            )
+        })
         return (
             < div >
                 <div>
@@ -50,15 +85,25 @@ class Pokemon extends Component {
                     <button onClick={this.getPokemonApi}>Search</button>
 
                 </div>
-                <img src={pokemon.sprites} alt="" />
-                <h1>{pokemon.name}</h1>
-                <h3># {pokemon.order}</h3>
-                <h3>Type: {pokemon.type}</h3>
-                <h3>{pokemon.species}</h3>
-                <h3>Height: {pokemon.height}</h3>
-                <h3>Weight: {pokemon.weight}</h3>
-                <h3>Moves: {pokemon.moves}</h3>
-
+                {this.state.showPokemon ?
+                    <div>
+                        <h1>#{pokedex.id} {pokedex.name} <button onClick={this.addPokemon}>+</button>
+                        </h1>
+                        <img src={pokedex.sprites ? pokedex.sprites.front_default : null} alt={pokedex.name} />
+                        <h3>Type: {listOfTypes}</h3>
+                        <h3>Moves: {listOfMoves}</h3>
+                    </div>
+                    :
+                    <div>
+                        <img src={singlePokemon.sprites} alt="" />
+                        <h1>{singlePokemon.name}</h1>
+                        <h3># {singlePokemon.id}</h3>
+                        <h3>Type: {singlePokemon.type}</h3>
+                        <h3>Height: {singlePokemon.height}</h3>
+                        <h3>Weight: {singlePokemon.weight}</h3>
+                        <h3>Moves: {singlePokemon.moves}</h3>
+                    </div>
+                }
             </div >
         );
     }
