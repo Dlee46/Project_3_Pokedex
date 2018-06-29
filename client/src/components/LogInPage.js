@@ -21,6 +21,7 @@ class LogInPage extends Component {
             this.props.history.push(`/user/${res.data._id}`)
         })
     }
+
     render() {
         return (
             <div>

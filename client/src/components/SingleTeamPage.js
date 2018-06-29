@@ -8,17 +8,22 @@ class SingleTeamPage extends Component {
             name: '',
             pokemon: []
         },
-        editTeamName: false
+        editTeamName: false,
+        pokedex: [],
+        showPokemon: false,
     }
     toggleEdit = () => {
         const editTeamName = !this.state.editTeamName
         this.setState({ editTeamName })
     }
+    togglePokemon = () => {
+        const showPokemon = !this.state.showPokemon
+        this.setState({ showPokemon })
+    }
     getTeamInfo() {
         const userId = this.props.match.params.userId
         const teamId = this.props.match.params.teamId
         axios.get(`/api/users/${userId}/team/${teamId}`).then((res) => {
-            console.log(res.data)
             this.setState({
                 team: res.data.team
             })
@@ -31,7 +36,6 @@ class SingleTeamPage extends Component {
 
         axios.patch(`/api/users/${userId}/team/${teamId}`, this.state.team)
             .then((res) => {
-                console.log('API RESPONSE', res.data)
                 this.setState({
                     team: res.data.team
                 })
@@ -47,11 +51,29 @@ class SingleTeamPage extends Component {
             team
         })
     }
+    pokedexHandleChange = (event) => {
+        const inputName = event.target.name
+        const userInput = event.target.value
+        const pokedex = { ...this.state.pokedex }
+        pokedex[inputName] = userInput
+        this.setState({
+            pokedex
+        })
+        console.log(pokedex)
+    }
+    getPokemonApi = () => {
+        console.log("POKEMON API", this.state.pokedex)
+        axios.get(`https://pokeapi.co/api/v2/pokemon/${this.state.pokedex.name}/`).then((res) => {
+
+            this.setState({
+                pokedex: res.data.results
+            })
+        })
+    }
     deletePokemon = (pokemonId) => {
         const userId = this.props.match.params.userId
         const teamId = this.props.match.params.teamId
         axios.delete(`/api/users/${userId}/team/${teamId}/pokemon/${pokemonId}`).then((res) => {
-            console.log('DELETED POKEMON, response', res.data)
             this.setState({
                 team: res.data.team
             })
@@ -59,6 +81,7 @@ class SingleTeamPage extends Component {
     }
     componentDidMount() {
         this.getTeamInfo()
+        this.getPokemonApi()
     }
     render() {
         const pokemon = this.state.team.pokemon || []
@@ -75,6 +98,20 @@ class SingleTeamPage extends Component {
         })
         return (
             <div>
+                <div>
+                    {/* {this.state.editTeamName ? */}
+                    <div>
+
+                        <input type="text"
+                            name="name"
+                            placeholder="Pokemon"
+                            onChange={this.pokedexHandleChange} />
+                        <button onClick={this.getPokemonApi}>Search</button>
+
+                    </div>
+                    {/* : null
+                     } */}
+                </div>
                 <h1>{this.state.team.name}</h1>
                 {listOfPokemon}
                 <div>

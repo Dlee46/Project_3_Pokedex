@@ -11,29 +11,39 @@ import Pokemon from './components/Pokemon';
 
 class App extends Component {
   state = {
-    users: []
+    users: [],
+    pokedex: []
+  }
+  getPokemonApi() {
+    axios.get(`https://pokeapi.co/api/v2/pokemon/`).then((res) => {
+      this.setState({
+        pokedex: res.data
+      })
+    })
   }
   getUserInfo() {
     axios.get('/api/users').then((res) => {
-      console.log("APP CONSOLE", res.data)
-      this.setState({ users: res.data.user })
-    }).catch((err) => {
-      console.error(err)
+      this.setState({
+        users: res.data.user
+      })
     })
   }
   componentDidMount() {
     this.getUserInfo()
+    this.getPokemonApi()
   }
   render() {
     const LogInComponent = (props) => (
       <LogInPage users={this.state.users} {...props} />
     )
-
     const TeamPageComponent = (props) => (
       <TeamPage users={this.state.users} {...props} />
     )
     const SingleTeamComponent = (props) => (
-      <SingleTeamPage users={this.state.users} {...props} />
+      <SingleTeamPage
+        users={this.state.users}
+        pokedex={this.state.pokedex}
+        {...props} />
     )
     const PokemonComponent = (props) => (
       <Pokemon users={this.state.users} {...props} />
@@ -48,6 +58,9 @@ class App extends Component {
             <Route exact path='/user/:userId/team/:teamId' render={SingleTeamComponent} />
             <Route exact path='/user/:userId/team/:teamId/pokemon/:pokemonId' render={PokemonComponent} />
           </Switch>
+          <div>
+            <button><Link to='/login'>Log Out</Link></button>
+          </div>
         </div>
       </Router>
     )
