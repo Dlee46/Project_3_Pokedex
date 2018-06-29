@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import styled from 'styled-components'
 
+const PokedexContainer = styled.div`
+background: red;
+`
 class LogInPage extends Component {
     state = {
         name: '',
@@ -24,7 +28,7 @@ class LogInPage extends Component {
 
     render() {
         return (
-            <div>
+            <PokedexContainer>
                 <h1>Log In</h1>
                 {this.props.users.map((user) => {
                     return (
@@ -49,7 +53,7 @@ class LogInPage extends Component {
                     />
                     <button type="submit">Create</button>
                 </form>
-            </div>
+            </PokedexContainer>
         );
     }
 }
