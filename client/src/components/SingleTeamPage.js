@@ -169,6 +169,9 @@ class SingleTeamPage extends Component {
                         }
                     </button>
                 </div>
+                <div>
+                    <button><Link to='/login'>Log Out</Link></button>
+                </div>
             </div>
         );
     }

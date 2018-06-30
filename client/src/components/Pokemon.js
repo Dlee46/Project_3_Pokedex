@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import PokedexType from './PokedexType'
 import PokedexMove from './PokedexMove'
+import { Link } from 'react-router-dom'
 class Pokemon extends Component {
     state = {
         pokemon: [],
@@ -104,6 +105,9 @@ class Pokemon extends Component {
                         <h3>Moves: {singlePokemon.moves}</h3>
                     </div>
                 }
+                <div>
+                    <button><Link to='/login'>Log Out</Link></button>
+                </div>
             </div >
         );
     }

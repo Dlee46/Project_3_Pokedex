@@ -72,6 +72,9 @@ class TeamPage extends Component {
                 <div>
                     {listOfTeams}
                 </div>
+                <div>
+                    <button><Link to='/login'>Log Out</Link></button>
+                </div>
             </div>
         );
     }
