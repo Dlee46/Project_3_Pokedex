@@ -10,7 +10,7 @@ text-align: center;
 border-radius:5%;
 margin:10px 20px;
 position: justify;
-border: 1px solid black;
+border: 2px solid black;
 box-shadow: outset 1px 1px 7px 4px;
 box-shadow: gray 12px 8px 5px 1px;
 .bigWhiteDot{
@@ -60,6 +60,7 @@ height: 65px;
 width: 65px;
 border-radius: 20vh;
 background: skyblue;
+margin: 0.2%;
 `
 const LoginContainer = styled.div`
 margin:10% 25vh;
@@ -78,31 +79,31 @@ box-sizing:border-box;
 const LidTopBorder = styled.div`
     position: absolute;
     top: 8vh;
-    right: 2.7vh;
-    border-bottom: 5.2vh solid black;
-    border-left: 5vh solid transparent;
+    right: 2.8vw;
+    border-bottom: 6vw solid black;
+    border-left: 5.5vw solid transparent;
     border-right: 0 solid transparent;
-    width: 45vh;
+    width: 45vw;
     height:0;
 `
 const Trapezoid = styled.div`
 position: absolute;
-top: 8.2vh;
-right: 2.9vh;
-border-bottom: 5.3vh solid red;
-border-left: 5vh solid transparent;
+top: 8.3vh;
+right: 3.3vw;
+border-bottom: 6vw solid red;
+border-left: 5.4vw solid transparent;
 border-right: 0 solid transparent;
 height: 0;
-width: 44.8vh;
+width: 44.5vw;
 `
 const YellowTriangle = styled.div`
 position: absolute;
 width: 0;
 height: 0;
 margin: 40% 10px;
-border-top: 4vh solid transparent;
-border-bottom: 4vh solid transparent;
-border-left: 4vh solid black;
+border-top: 4vw solid transparent;
+border-bottom: 4vw solid transparent;
+border-left: 4vw solid black;
 `
 const InnerTriangle = styled.div`
 border-top: 3.5vh solid transparent;
@@ -116,7 +117,14 @@ top: -3.5vh;
 right: 5.2vh;
 `
 const BottomOval = styled.div`
-
+position: absolute;
+border-radius: 15px;
+border: 1px solid black;
+height: 3%;
+width: 60%;
+bottom: 3%;
+left: 20vw;
+box-shadow: inset 1px 1px 1px 1px;
 `
 class LogInPage extends Component {
     state = {
