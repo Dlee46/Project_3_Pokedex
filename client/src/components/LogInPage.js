@@ -74,7 +74,6 @@ border: 2px solid black;
 border-radius: 0 0 5vh 5vh;
 height: 88.5vh;
 background: red;
-box-sizing:border-box;
 `
 const LidTopBorder = styled.div`
     position: absolute;
@@ -100,21 +99,21 @@ const YellowTriangle = styled.div`
 position: absolute;
 width: 0;
 height: 0;
-margin: 40% 10px;
-border-top: 4vw solid transparent;
-border-bottom: 4vw solid transparent;
-border-left: 4vw solid black;
+margin: 40% 30px;
+border-top: 5vw solid transparent;
+border-bottom: 5vw solid transparent;
+border-left: 5vw solid black;
 `
 const InnerTriangle = styled.div`
-border-top: 3.5vh solid transparent;
-border-bottom: 3.5vh solid transparent;
-border-left: 3.5vh solid yellow;
+border-top: 3.5vw solid transparent;
+border-bottom: 3.5vw solid transparent;
+border-left: 3.5vw solid yellow;
 position: relative;
-margin: 40% 10.5px;
+margin: 40% 8px;
 width: 0;
 height:0;
-top: -3.5vh;
-right: 5.2vh;
+top: -3.5vw;
+right: 5.5vw;
 `
 const BottomOval = styled.div`
 position: absolute;
@@ -125,6 +124,27 @@ width: 60%;
 bottom: 3%;
 left: 20vw;
 box-shadow: inset 1px 1px 1px 1px;
+`
+const Pole = styled.div`
+width: 5%;
+height: 100%;
+float: right;
+`
+const MiniPole1 = styled.div`
+height: 10vh;
+background-color: red;
+margin-top: 5vh;
+margin-bottom: 10px;
+border: 2px solid black;
+border-right: none;
+`
+const MiniPole2 = styled.div`
+height: 10vh;
+background-color: red;
+margin-top: 50vh;
+margin-bottom: 10px;
+border: 2px solid black;
+border-right:none;
 `
 class LogInPage extends Component {
     state = {
@@ -157,6 +177,10 @@ class LogInPage extends Component {
                 <PokedexContainer className="yellowDot"></PokedexContainer>
                 <PokedexContainer className="greenDot"></PokedexContainer>
                 <PokedexLid>
+                    <Pole>
+                        <MiniPole1></MiniPole1>
+                        <MiniPole2></MiniPole2>
+                    </Pole>
                     <LidTopBorder className="lidTopBorder"></LidTopBorder>
                     <Trapezoid className="trapezoid"></Trapezoid>
                     <YellowTriangle className="yellowTriangle">
