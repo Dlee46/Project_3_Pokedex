@@ -97,6 +97,15 @@ height: 0;
 width: 44.8vh;
 `
 const YellowTriangle = styled.div`
+position: absolute;
+width: 0;
+height: 0;
+margin: 40% 10px;
+border-top: 4vh solid transparent;
+border-bottom: 4vh solid transparent;
+border-left: 4vh solid black;
+`
+const InnerTriangle = styled.div`
 
 `
 const BottomOval = styled.div`
@@ -135,7 +144,9 @@ class LogInPage extends Component {
                 <PokedexLid>
                     <LidTopBorder className="lidTopBorder"></LidTopBorder>
                     <Trapezoid className="trapezoid"></Trapezoid>
-                    <YellowTriangle className="yellowTriangle"></YellowTriangle>
+                    <YellowTriangle className="yellowTriangle">
+                        <InnerTriangle></InnerTriangle>
+                    </YellowTriangle>
                     <LoginContainer>
                         <h1>Log In</h1>
                         {this.props.users.map((user) => {
