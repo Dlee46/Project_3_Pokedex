@@ -1,7 +1,125 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import styled from 'styled-components'
 
+const PokedexContainer = styled.div`
+height: 100vh;
+background: red;
+text-align: center;
+border-radius:5%;
+margin:10px 20px;
+position: justify;
+border: 2px solid black;
+box-shadow: outset 1px 1px 7px 4px;
+box-shadow: gray 12px 8px 5px 1px;
+.bigWhiteDot{
+border-radius: 20vh;
+background: white;
+height: 70px;
+width: 70px;
+box-shadow: none;
+}
+.redDot{
+    position:absolute;
+    border-radius: 10vh;
+    height:20px;
+    width: 20px;
+    background: red;
+    border: 1px solid black;
+    left: 120px;
+    top: 20px;
+    box-shadow: none;
+}
+.yellowDot{
+    position:absolute;
+    border-radius: 10vh;
+    height:20px;
+    width: 20px;
+    background: yellow;
+    border: 1px solid black;
+    left: 150px;
+    top: 20px;
+    box-shadow: none;
+}
+.greenDot{
+    position:absolute;
+    border-radius: 10vh;
+    height:20px;
+    width: 20px;
+    background: green;
+    border: 1px solid black;
+    left: 180px;
+    top: 20px;
+    box-shadow: none;
+}
+`
+const BlueDot = styled.div`
+position: absolute;
+height: 65px;
+width: 65px;
+border-radius: 20vh;
+background: skyblue;
+margin: 0.2%;
+`
+const LidTopBorder = styled.div`
+    position: absolute;
+    top: 1.3vh;
+    right:1vh;
+    border-top: 8vw solid black;
+    width: 45vw;
+    height:0;
+`
+const InnerTop = styled.div`
+
+`
+const Trapezoid = styled.div`
+position: absolute;
+top: 8.5vh;
+right: 1vh;
+border-top: 6vw solid black;
+border-left: 5.4vh solid transparent;
+border-right: 0 solid transparent;
+height: 0;
+width: 15vw;
+`
+const InnterTrapezoid = styled.div`
+
+`
+const Pole = styled.div`
+width: 5%;
+height: 100%;
+`
+const MiniPole1 = styled.div`
+height: 10vh;
+background-color: red;
+margin-top: 5vh;
+margin-bottom: 10px;
+border: 2px solid black;
+`
+const MiniPole2 = styled.div`
+height: 10vh;
+background-color: red;
+margin-top: 50vh;
+margin-bottom: 10px;
+border: 2px solid black;
+`
+const LeftContainer = styled.div`
+border: 1px solid black;
+`
+const LeftScreen = styled.div`
+border: solid green;
+`
+const RightContainer = styled.div`
+border: 1px solid black;
+`
+const RightScreen = styled.div`
+border: solid green;
+`
+const Container = styled.div`
+display: flex;
+flex-direction: row;
+`
 class TeamPage extends Component {
     state = {
         user: {},
@@ -61,21 +179,47 @@ class TeamPage extends Component {
             )
         })
         return (
-            <div>
-                <form onSubmit={this.handleSubmitNew}>
-                    <input
-                        type="text"
-                        name="name"
-                        onChange={this.handleChange} />
-                    <button>New Team</button>
-                </form>
+            <PokedexContainer>
+                <PokedexContainer className="bigWhiteDot">
+                    <BlueDot>
+                    </BlueDot>
+                </PokedexContainer>
+                <PokedexContainer className="redDot"></PokedexContainer>
+                <PokedexContainer className="yellowDot"></PokedexContainer>
+                <PokedexContainer className="greenDot"></PokedexContainer>
                 <div>
-                    {listOfTeams}
+                    <LidTopBorder className="lidTopBorder"></LidTopBorder>
+                    <InnerTop></InnerTop>
+                    <Trapezoid className="trapezoid"></Trapezoid>
+                    <InnterTrapezoid></InnterTrapezoid>
                 </div>
-                <div>
-                    <button><Link to='/login'>Log Out</Link></button>
-                </div>
-            </div>
+                <Container>
+                    <LeftContainer>
+                        <LeftScreen>
+                            <form onSubmit={this.handleSubmitNew}>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    placeholder="Team Name"
+                                    onChange={this.handleChange} />
+                                <button>New Team</button>
+                            </form>
+                        </LeftScreen>
+                    </LeftContainer>
+                    <Pole>
+                        <MiniPole1></MiniPole1>
+                        <MiniPole2></MiniPole2>
+                    </Pole>
+                    <RightContainer>
+                        <RightScreen>
+                            {listOfTeams}
+                        </RightScreen>
+                        <div>
+                            <button><Link to='/login'>Log Out</Link></button>
+                        </div>
+                    </RightContainer>
+                </Container>
+            </PokedexContainer>
         );
     }
 }
