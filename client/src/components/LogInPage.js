@@ -62,12 +62,11 @@ border-radius: 20vh;
 background: skyblue;
 `
 const LoginContainer = styled.div`
-margin-top: 10px;
-border: 1px solid black;
+margin:10% 25vh;
 `
 
 const CreateUser = styled.div`
-border: 1px solid black;
+margin: 30% 25vh;
 `
 const PokedexLid = styled.div`
 border: 2px solid black;
@@ -106,7 +105,15 @@ border-bottom: 4vh solid transparent;
 border-left: 4vh solid black;
 `
 const InnerTriangle = styled.div`
-
+border-top: 3.5vh solid transparent;
+border-bottom: 3.5vh solid transparent;
+border-left: 3.5vh solid yellow;
+position: relative;
+margin: 40% 10.5px;
+width: 0;
+height:0;
+top: -3.5vh;
+right: 5.2vh;
 `
 const BottomOval = styled.div`
 
