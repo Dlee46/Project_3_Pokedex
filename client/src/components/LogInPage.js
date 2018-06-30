@@ -69,6 +69,39 @@ border: 1px solid black;
 const CreateUser = styled.div`
 border: 1px solid black;
 `
+const PokedexLid = styled.div`
+border: 2px solid black;
+border-radius: 0 0 5vh 5vh;
+height: 88.5vh;
+background: red;
+box-sizing:border-box;
+`
+const LidTopBorder = styled.div`
+    position: absolute;
+    top: 8vh;
+    right: 2.7vh;
+    border-bottom: 5.2vh solid black;
+    border-left: 5vh solid transparent;
+    border-right: 0 solid transparent;
+    width: 45vh;
+    height:0;
+`
+const Trapezoid = styled.div`
+position: absolute;
+top: 8.2vh;
+right: 2.9vh;
+border-bottom: 5.3vh solid red;
+border-left: 5vh solid transparent;
+border-right: 0 solid transparent;
+height: 0;
+width: 44.8vh;
+`
+const YellowTriangle = styled.div`
+
+`
+const BottomOval = styled.div`
+
+`
 class LogInPage extends Component {
     state = {
         name: '',
@@ -99,34 +132,40 @@ class LogInPage extends Component {
                 <PokedexContainer className="redDot"></PokedexContainer>
                 <PokedexContainer className="yellowDot"></PokedexContainer>
                 <PokedexContainer className="greenDot"></PokedexContainer>
-                <LoginContainer>
-                    <h1>Log In</h1>
-                    {this.props.users.map((user) => {
-                        return (
-                            <div key={user._id}><Link key={user._id} to={`user/${user._id}`}>{user.userId}</Link></div>
-                        )
-                    })}
-                </LoginContainer>
-                <CreateUser>
-                    <h1>New Users</h1>
-                    <form onSubmit={this.handleSubmit}>
-                        <input
-                            type="text"
-                            name="name"
-                            placeholder="First and Last Name"
-                            value={this.state.name}
-                            onChange={this.handleChange}
-                        />
-                        <input
-                            type="text"
-                            name="userId"
-                            placeholder="User ID"
-                            value={this.state.userId}
-                            onChange={this.handleChange}
-                        />
-                        <button type="submit">Create</button>
-                    </form>
-                </CreateUser>
+                <PokedexLid>
+                    <LidTopBorder className="lidTopBorder"></LidTopBorder>
+                    <Trapezoid className="trapezoid"></Trapezoid>
+                    <YellowTriangle className="yellowTriangle"></YellowTriangle>
+                    <LoginContainer>
+                        <h1>Log In</h1>
+                        {this.props.users.map((user) => {
+                            return (
+                                <div key={user._id}><Link key={user._id} to={`user/${user._id}`}>{user.userId}</Link></div>
+                            )
+                        })}
+                    </LoginContainer>
+                    <CreateUser>
+                        <h1>New Users</h1>
+                        <form onSubmit={this.handleSubmit}>
+                            <input
+                                type="text"
+                                name="name"
+                                placeholder="First and Last Name"
+                                value={this.state.name}
+                                onChange={this.handleChange}
+                            />
+                            <input
+                                type="text"
+                                name="userId"
+                                placeholder="User ID"
+                                value={this.state.userId}
+                                onChange={this.handleChange}
+                            />
+                            <button type="submit">Create</button>
+                        </form>
+                    </CreateUser>
+                    <BottomOval className="bottomOval"></BottomOval>
+                </PokedexLid>
             </PokedexContainer>
         );
     }

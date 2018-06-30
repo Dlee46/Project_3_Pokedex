@@ -58,9 +58,6 @@ class App extends Component {
             <Route exact path='/user/:userId/team/:teamId' render={SingleTeamComponent} />
             <Route exact path='/user/:userId/team/:teamId/pokemon/:pokemonId' render={PokemonComponent} />
           </Switch>
-          <div>
-            <button><Link to='/login'>Log Out</Link></button>
-          </div>
         </div>
       </Router>
     )
