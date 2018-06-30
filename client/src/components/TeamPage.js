@@ -71,20 +71,32 @@ const LidTopBorder = styled.div`
     height:0;
 `
 const InnerTop = styled.div`
-
+position: absolute;
+    top: 1.1vh;
+    right:-.1vh;
+    border-top: 8vw solid white;
+    width: 46vw;
+    height:0;
 `
 const Trapezoid = styled.div`
 position: absolute;
 top: 8.5vh;
-right: 1vh;
+right: 2.8vh;
 border-top: 6vw solid black;
 border-left: 5.4vh solid transparent;
 border-right: 0 solid transparent;
 height: 0;
-width: 15vw;
+width: 13vw;
 `
 const InnterTrapezoid = styled.div`
-
+position: absolute;
+top: 8.2vh;
+right: 0vh;
+border-top: 5.9vw solid white;
+border-left: 5.4vh solid transparent;
+border-right: 0 solid transparent;
+height: 0;
+width: 16vw;
 `
 const Pole = styled.div`
 width: 5%;
@@ -106,19 +118,27 @@ border: 2px solid black;
 `
 const LeftContainer = styled.div`
 border: 1px solid black;
+padding: 6.5vw;
 `
 const LeftScreen = styled.div`
 border: solid green;
+padding: 1vw;
 `
 const RightContainer = styled.div`
+padding: 9.5vw;
 border: 1px solid black;
 `
 const RightScreen = styled.div`
+background-color:black;
+height:70%;
+width: 150%;
 border: solid green;
+margin: 0;
 `
 const Container = styled.div`
 display: flex;
 flex-direction: row;
+margin: 2vh;
 `
 class TeamPage extends Component {
     state = {
