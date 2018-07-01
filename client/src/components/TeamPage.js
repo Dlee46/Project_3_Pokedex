@@ -130,7 +130,7 @@ background-color: whitesmoke;
 border-radius: 20px;
 border: 20px solid gray;
 height: 70%;
-width:85%;
+width:80%;
 padding: 1vw;
 overflow: scroll;
 position: center;
@@ -236,18 +236,18 @@ class TeamPage extends Component {
                 </div>
                 <Container>
                     <LeftContainer>
-                       
-                            <LeftScreen>
-                                <form onSubmit={this.handleSubmitNew}>
-                                    <input
-                                        type="text"
-                                        name="name"
-                                        placeholder="Team Name"
-                                        onChange={this.handleChange} />
-                                    <button>New Team</button>
-                                </form>
-                            </LeftScreen>
-                      
+
+                        <LeftScreen>
+                            <form onSubmit={this.handleSubmitNew}>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    placeholder="Team Name"
+                                    onChange={this.handleChange} />
+                                <button>New Team</button>
+                            </form>
+                        </LeftScreen>
+
                     </LeftContainer>
                     <Pole>
                         <MiniPole1></MiniPole1>

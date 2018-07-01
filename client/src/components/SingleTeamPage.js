@@ -131,7 +131,7 @@ background-color: whitesmoke;
 border-radius: 20px;
 border: 20px solid gray;
 height: 70%;
-width:85%;
+width:80%;
 padding: 1vw;
 overflow: scroll;
 position: center;
