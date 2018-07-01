@@ -279,7 +279,8 @@ class Pokemon extends Component {
                     </div>
                 }
                 <div>
-                    <button><Link to='/login'>Log Out</Link></button>
+                    <h6>Log Out</h6>
+                    <Link to='/login'><img src="https://vignette.wikia.nocookie.net/sagseries/images/4/4c/Pokeball.png/revision/latest?cb=20120731005210" alt="" width="40" height="40" /></Link>
                 </div>
             </ PokedexContainer >
         );
