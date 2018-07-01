@@ -250,38 +250,44 @@ class Pokemon extends Component {
                     <Trapezoid className="trapezoid"></Trapezoid>
                     <InnterTrapezoid></InnterTrapezoid>
                 </div>
-                <div>
-
-                    <input type="text"
-                        name="name"
-                        placeholder="Pokemon"
-                        onChange={this.pokedexHandleChange} />
-                    <button onClick={this.getPokemonApi}>Search</button>
-
-                </div>
-                {this.state.showPokemon ?
+                <Container>
+                    {/* <div> */}
                     <div>
-                        <h1>#{pokedex.id} {pokedex.name} <button onClick={this.addPokemon}>+</button>
-                        </h1>
-                        <img src={pokedex.sprites ? pokedex.sprites.front_default : null} alt={pokedex.name} />
-                        <h3>Type: {listOfTypes}</h3>
-                        <h3>Moves: {listOfMoves}</h3>
+
+                        <input type="text"
+                            name="name"
+                            placeholder="Pokemon"
+                            onChange={this.pokedexHandleChange} />
+                        <button onClick={this.getPokemonApi}>Search</button>
+
                     </div>
-                    :
+                    {this.state.showPokemon ?
+                        <div>
+                            <h1>#{pokedex.id} {pokedex.name} <button onClick={this.addPokemon}>+</button>
+                            </h1>
+                            <img src={pokedex.sprites ? pokedex.sprites.front_default : null} alt={pokedex.name} />
+                            <h3>Type: {listOfTypes}</h3>
+                            <h3>Height: {pokedex.height}</h3>
+                            <h3>Weight: {pokedex.weight}</h3>
+                            <h3>Moves: {listOfMoves}</h3>
+                        </div>
+
+                        :
+                        <div>
+                            <img src={singlePokemon.sprites} alt="" />
+                            <h1>{singlePokemon.name}</h1>
+                            <h3># {singlePokemon.id}</h3>
+                            <h3>Type: {singlePokemon.type}</h3>
+                            <h3>Height: {singlePokemon.height}</h3>
+                            <h3>Weight: {singlePokemon.weight}</h3>
+                            <h3>Moves: Please search the pokemon on the pokedex</h3>
+                        </div>
+                    }
                     <div>
-                        <img src={singlePokemon.sprites} alt="" />
-                        <h1>{singlePokemon.name}</h1>
-                        <h3># {singlePokemon.id}</h3>
-                        <h3>Type: {singlePokemon.type}</h3>
-                        <h3>Height: {singlePokemon.height}</h3>
-                        <h3>Weight: {singlePokemon.weight}</h3>
-                        <h3>Moves: {singlePokemon.moves}</h3>
+                        <h6>Log Out</h6>
+                        <Link to='/login'><img src="https://vignette.wikia.nocookie.net/sagseries/images/4/4c/Pokeball.png/revision/latest?cb=20120731005210" alt="" width="40" height="40" /></Link>
                     </div>
-                }
-                <div>
-                    <h6>Log Out</h6>
-                    <Link to='/login'><img src="https://vignette.wikia.nocookie.net/sagseries/images/4/4c/Pokeball.png/revision/latest?cb=20120731005210" alt="" width="40" height="40" /></Link>
-                </div>
+                </Container>
             </ PokedexContainer >
         );
     }
