@@ -3,6 +3,166 @@ import axios from 'axios'
 import PokedexType from './PokedexType'
 import PokedexMove from './PokedexMove'
 import { Link } from 'react-router-dom'
+import styled from 'styled-components'
+
+const PokedexContainer = styled.div`
+height: 80vh;
+background: red;
+text-align: center;
+border-radius:5%;
+margin:10px 20px;
+position: justify;
+border: 2px solid black;
+box-shadow: outset 1px 1px 7px 4px;
+box-shadow: gray 12px 8px 5px 1px;
+.bigWhiteDot{
+border-radius: 20vh;
+background: white;
+height: 70px;
+width: 70px;
+box-shadow: none;
+}
+.redDot{
+    position:absolute;
+    border-radius: 10vh;
+    height:20px;
+    width: 20px;
+    background: red;
+    border: 1px solid black;
+    left: 120px;
+    top: 20px;
+    box-shadow: none;
+}
+.yellowDot{
+    position:absolute;
+    border-radius: 10vh;
+    height:20px;
+    width: 20px;
+    background: yellow;
+    border: 1px solid black;
+    left: 150px;
+    top: 20px;
+    box-shadow: none;
+}
+.greenDot{
+    position:absolute;
+    border-radius: 10vh;
+    height:20px;
+    width: 20px;
+    background: green;
+    border: 1px solid black;
+    left: 180px;
+    top: 20px;
+    box-shadow: none;
+}
+`
+const BlueDot = styled.div`
+position: absolute;
+height: 65px;
+width: 65px;
+border-radius: 20vh;
+background: skyblue;
+margin: 0.2%;
+`
+const LidTopBorder = styled.div`
+    position: absolute;
+    top: 1.3vh;
+    right:1vh;
+    border-top: 8vw solid black;
+    width: 45vw;
+    height:0;
+`
+const InnerTop = styled.div`
+position: absolute;
+    top: 1.1vh;
+    right:-.1vh;
+    border-top: 8vw solid white;
+    width: 46vw;
+    height:0;
+`
+const Trapezoid = styled.div`
+position: absolute;
+top: 8.5vh;
+right: 2.8vh;
+border-top: 6vw solid black;
+border-left: 5.4vh solid transparent;
+border-right: 0 solid transparent;
+height: 0;
+width: 13vw;
+`
+const InnterTrapezoid = styled.div`
+position: absolute;
+top: 8.2vh;
+right: 0vh;
+border-top: 5.9vw solid white;
+border-left: 5.4vh solid transparent;
+border-right: 0 solid transparent;
+height: 0;
+width: 16vw;
+`
+const Pole = styled.div`
+    width: 5%;
+    border-right: 2px solid black;
+    height: 114%;
+    margin-top: -5.5vh;
+`
+const MiniPole1 = styled.div`
+height: 10vh;
+background-color: red;
+margin-top: 5vh;
+margin-bottom: 10px;
+border: 2px solid black;
+border-right: none;
+`
+const MiniPole2 = styled.div`
+height: 10vh;
+background-color: red;
+margin-top: 30vh;
+border: 2px solid black;
+border-right: none;
+`
+const LeftContainer = styled.div`
+position:relative;
+/* border: 1px solid black; */
+width: 58%;
+padding: 1vw;
+`
+const LeftScreen = styled.div`
+background-color: whitesmoke;
+border-radius: 20px;
+border: 20px solid gray;
+height: 70%;
+width:85%;
+padding: 1vw;
+overflow: scroll;
+position: center;
+`
+const RightContainer = styled.div`
+display: flex;
+flex-direction: column;
+position: relative;
+width: 45%;
+padding: 1vw;
+padding-left: 45px;
+/* border: 1px solid black; */
+`
+const RightScreen = styled.div`
+background-color:whitesmoke;
+height:60%;
+width: 90%;
+padding: 1vw;
+float: right;
+border: 1px solid black;
+overflow: scroll;
+`
+const Container = styled.div`
+display: flex;
+flex-direction: row;
+margin: 2vh;
+height: 80%;
+`
+const LogOutButton = styled.div`
+`
 class Pokemon extends Component {
     state = {
         pokemon: [],
@@ -76,7 +236,20 @@ class Pokemon extends Component {
             )
         })
         return (
-            < div >
+            < PokedexContainer >
+                <PokedexContainer className="bigWhiteDot">
+                    <BlueDot>
+                    </BlueDot>
+                </PokedexContainer>
+                <PokedexContainer className="redDot"></PokedexContainer>
+                <PokedexContainer className="yellowDot"></PokedexContainer>
+                <PokedexContainer className="greenDot"></PokedexContainer>
+                <div>
+                    <LidTopBorder className="lidTopBorder"></LidTopBorder>
+                    <InnerTop></InnerTop>
+                    <Trapezoid className="trapezoid"></Trapezoid>
+                    <InnterTrapezoid></InnterTrapezoid>
+                </div>
                 <div>
 
                     <input type="text"
@@ -108,7 +281,7 @@ class Pokemon extends Component {
                 <div>
                     <button><Link to='/login'>Log Out</Link></button>
                 </div>
-            </div >
+            </ PokedexContainer >
         );
     }
 }

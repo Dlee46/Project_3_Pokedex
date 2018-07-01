@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const PokedexContainer = styled.div`
-height: 100vh;
+height: 80vh;
 background: red;
 text-align: center;
 border-radius:5%;
@@ -99,8 +99,10 @@ height: 0;
 width: 16vw;
 `
 const Pole = styled.div`
-width: 5%;
-height: 100%;
+    width: 5%;
+    border-right: 2px solid black;
+    height: 114%;
+    margin-top: -5.5vh;
 `
 const MiniPole1 = styled.div`
 height: 10vh;
@@ -108,37 +110,56 @@ background-color: red;
 margin-top: 5vh;
 margin-bottom: 10px;
 border: 2px solid black;
+border-right: none;
 `
 const MiniPole2 = styled.div`
 height: 10vh;
 background-color: red;
-margin-top: 50vh;
-margin-bottom: 10px;
+margin-top: 30vh;
 border: 2px solid black;
+border-right: none;
 `
 const LeftContainer = styled.div`
-border: 1px solid black;
-padding: 6.5vw;
-`
-const LeftScreen = styled.div`
-border: solid green;
+position:relative;
+/* border: 1px solid black; */
+width: 58%;
 padding: 1vw;
 `
+const LeftScreen = styled.div`
+background-color: whitesmoke;
+border-radius: 20px;
+border: 20px solid gray;
+height: 70%;
+width:85%;
+padding: 1vw;
+overflow: scroll;
+position: center;
+`
 const RightContainer = styled.div`
-padding: 9.5vw;
-border: 1px solid black;
+display: flex;
+flex-direction: column;
+position: relative;
+width: 45%;
+padding: 1vw;
+padding-left: 45px;
+/* border: 1px solid black; */
 `
 const RightScreen = styled.div`
-background-color:black;
-height:70%;
-width: 150%;
-border: solid green;
-margin: 0;
+background-color:whitesmoke;
+height:60%;
+width: 90%;
+padding: 1vw;
+float: right;
+border: 1px solid black;
+overflow: scroll;
 `
 const Container = styled.div`
 display: flex;
 flex-direction: row;
 margin: 2vh;
+height: 80%;
+`
+const LogOutButton = styled.div`
 `
 class TeamPage extends Component {
     state = {
@@ -215,16 +236,18 @@ class TeamPage extends Component {
                 </div>
                 <Container>
                     <LeftContainer>
-                        <LeftScreen>
-                            <form onSubmit={this.handleSubmitNew}>
-                                <input
-                                    type="text"
-                                    name="name"
-                                    placeholder="Team Name"
-                                    onChange={this.handleChange} />
-                                <button>New Team</button>
-                            </form>
-                        </LeftScreen>
+                       
+                            <LeftScreen>
+                                <form onSubmit={this.handleSubmitNew}>
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        placeholder="Team Name"
+                                        onChange={this.handleChange} />
+                                    <button>New Team</button>
+                                </form>
+                            </LeftScreen>
+                      
                     </LeftContainer>
                     <Pole>
                         <MiniPole1></MiniPole1>
@@ -234,9 +257,12 @@ class TeamPage extends Component {
                         <RightScreen>
                             {listOfTeams}
                         </RightScreen>
-                        <div>
-                            <button><Link to='/login'>Log Out</Link></button>
-                        </div>
+                        <LogOutButton>
+                            <h6>Log Out</h6>
+                            <Link to='/login'><img src="https://vignette.wikia.nocookie.net/sagseries/images/4/4c/Pokeball.png/revision/latest?cb=20120731005210" alt="" width="40" height="40" /></Link>
+                            {/* <h6>Team</h6>
+                            <Link to={teamUrl}></Link> */}
+                        </LogOutButton>
                     </RightContainer>
                 </Container>
             </PokedexContainer>
