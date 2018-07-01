@@ -159,8 +159,7 @@ flex-direction: row;
 margin: 2vh;
 height: 80%;
 `
-const LogOutButton = styled.div`
-`
+
 class TeamPage extends Component {
     state = {
         user: {},
@@ -257,12 +256,12 @@ class TeamPage extends Component {
                         <RightScreen>
                             {listOfTeams}
                         </RightScreen>
-                        <LogOutButton>
+                        <div>
                             <h6>Log Out</h6>
                             <Link to='/login'><img src="https://vignette.wikia.nocookie.net/sagseries/images/4/4c/Pokeball.png/revision/latest?cb=20120731005210" alt="" width="40" height="40" /></Link>
                             {/* <h6>Team</h6>
                             <Link to={teamUrl}></Link> */}
-                        </LogOutButton>
+                        </div>
                     </RightContainer>
                 </Container>
             </PokedexContainer>

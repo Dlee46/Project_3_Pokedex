@@ -161,8 +161,7 @@ flex-direction: row;
 margin: 2vh;
 height: 80%;
 `
-const LogOutButton = styled.div`
-`
+
 class Pokemon extends Component {
     state = {
         pokemon: [],
