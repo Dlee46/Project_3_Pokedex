@@ -28,7 +28,9 @@ app.use(express.static(__dirname + '/client/build/'));
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/client/build/index.html')
 })
-
+app.get('/', (req, res) => {
+    res.redirect('/api/users')
+})
 app.use('/api/users', usersRouter);
 app.use('/api/users/:userId/team', teamRouter)
 app.use('/api/users/:userId/team/:teamId/pokemon', pokemonRouter)

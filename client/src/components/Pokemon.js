@@ -55,6 +55,9 @@ box-shadow: none;
     top: 20px;
     box-shadow: none;
 }
+/* @media all{
+    height: 693px;
+} */
 `
 const BlueDot = styled.div`
 position: absolute;

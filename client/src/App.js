@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import './App.css';
-import styled from 'styled-components'
 import axios from 'axios'
 import LogInPage from './components/LogInPage';
 import TeamPage from './components/TeamPage';

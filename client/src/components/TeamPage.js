@@ -193,13 +193,13 @@ class TeamPage extends Component {
     handleSubmitNew = (event) => {
         event.preventDefault()
         const userId = this.props.match.params.userId
-        axios.post(`/api/users/${userId}/team`, this.state).then((res) => {
+        axios.post(`/api/users/${userId}/team/`, this.state).then((res) => {
             this.setState({
                 team: res.data.user.team,
                 user: res.data.user
             })
             return (
-                this.props.history.push(`/users/${userId}/team/`)
+                this.props.history.push(`/user/${userId}`)
             )
         })
     }

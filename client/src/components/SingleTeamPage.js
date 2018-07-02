@@ -175,10 +175,14 @@ class SingleTeamPage extends Component {
         const teamId = this.props.match.params.teamId
         const newPokemon = { ...this.state.pokedex }
         axios.post(`/api/users/${userId}/team/${teamId}/pokemon`, newPokemon).then((res) => {
+            console.log(res.data)
             this.setState({
-                team: res.data,
+                team: res.data.user.team,
                 showPokemon: false
             })
+            return (
+                this.props.history.push(`/user/${userId}/team/${teamId}`)
+            )
         })
     }
     toggleEdit = () => {
