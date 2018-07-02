@@ -31,6 +31,7 @@ app.get('/', (req, res) => {
 app.get('/', (req, res) => {
     res.redirect('/api/users')
 })
+
 app.use('/api/users', usersRouter);
 app.use('/api/users/:userId/team', teamRouter)
 app.use('/api/users/:userId/team/:teamId/pokemon', pokemonRouter)

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import './App.css';
 import axios from 'axios'
 import LogInPage from './components/LogInPage';
@@ -13,17 +13,18 @@ class App extends Component {
     users: [],
     pokedex: []
   }
-  getPokemonApi() {
-    axios.get(`https://pokeapi.co/api/v2/pokemon/`).then((res) => {
-      this.setState({
-        pokedex: res.data
-      })
-    })
-  }
   getUserInfo() {
     axios.get('/api/users').then((res) => {
       this.setState({
         users: res.data.user
+      })
+    })
+  }
+
+  getPokemonApi() {
+    axios.get(`https://pokeapi.co/api/v2/pokemon/`).then((res) => {
+      this.setState({
+        pokedex: res.data
       })
     })
   }
@@ -52,6 +53,7 @@ class App extends Component {
       <Router>
         <div>
           <Switch>
+            <Route exact path='/' render={() => (<Redirect to='/login' />)} />
             <Route exact path='/login' render={LogInComponent} />
             <Route exact path='/user/:userId' render={TeamPageComponent} />
             <Route exact path='/user/:userId/team/:teamId' render={SingleTeamComponent} />
