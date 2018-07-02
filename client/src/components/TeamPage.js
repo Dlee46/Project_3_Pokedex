@@ -53,6 +53,12 @@ box-shadow: none;
     top: 20px;
     box-shadow: none;
 }
+a {
+    font-family: 'Boogaloo', cursive;
+}
+input {
+    font-family: 'Kalam', cursive;
+}
 `
 const BlueDot = styled.div`
 position: absolute;
@@ -134,6 +140,7 @@ width:80%;
 padding: 1vw;
 overflow: scroll;
 position: center;
+font-family: 'Press Start 2P', cursive;
 `
 const RightContainer = styled.div`
 display: flex;
@@ -152,6 +159,7 @@ padding: 1vw;
 float: right;
 border: 1px solid black;
 overflow: scroll;
+font-family: 'Press Start 2P', cursive;
 `
 const Container = styled.div`
 display: flex;
@@ -159,7 +167,14 @@ flex-direction: row;
 margin: 2vh;
 height: 80%;
 `
+const Links = styled.div`
+display: flex;
+margin: 0 auto;
+h6{
+    font-family: 'Permanent Marker', cursive;
 
+}
+`
 class TeamPage extends Component {
     state = {
         user: {},
@@ -256,12 +271,10 @@ class TeamPage extends Component {
                         <RightScreen>
                             {listOfTeams}
                         </RightScreen>
-                        <div>
+                        <Links>
                             <h6>Log Out</h6>
                             <Link to='/login'><img src="https://vignette.wikia.nocookie.net/sagseries/images/4/4c/Pokeball.png/revision/latest?cb=20120731005210" alt="" width="40" height="40" /></Link>
-                            {/* <h6>Team</h6>
-                            <Link to={teamUrl}></Link> */}
-                        </div>
+                        </Links>
                     </RightContainer>
                 </Container>
             </PokedexContainer>

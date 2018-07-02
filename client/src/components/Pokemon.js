@@ -55,9 +55,12 @@ box-shadow: none;
     top: 20px;
     box-shadow: none;
 }
-/* @media all{
-    height: 693px;
-} */
+a {
+    font-family: 'Boogaloo', cursive;
+}
+input{
+    font-family: 'Kalam', cursive;
+}
 `
 const BlueDot = styled.div`
 position: absolute;
@@ -139,6 +142,14 @@ width:80%;
 padding: 1vw;
 overflow: scroll;
 position: center;
+font-family: 'Press Start 2P', cursive;
+a{
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+}
+h1{
+    font-size: 13px;
+}
 `
 const RightContainer = styled.div`
 display: flex;
@@ -157,6 +168,14 @@ padding: 1vw;
 float: right;
 border: 1px solid black;
 overflow: scroll;
+font-family: 'Press Start 2P', cursive;
+a{
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+}
+h1{
+    font-size: 13px;
+}
 `
 const Container = styled.div`
 display: flex;
@@ -164,7 +183,14 @@ flex-direction: row;
 margin: 2vh;
 height: 80%;
 `
+const Links = styled.div`
+display: flex;
+margin: 0 auto;
+h6{
+    font-family: 'Permanent Marker', cursive;
 
+}
+`
 class Pokemon extends Component {
     state = {
         pokemon: [],
@@ -223,6 +249,11 @@ class Pokemon extends Component {
         this.getTeamInfo()
     }
     render() {
+        console.log("State for Pokemon", this.props)
+        const userId = this.props.match.params.userId
+        const teamId = this.props.match.params.teamId
+        const teamPage = `/user/${userId}`
+        const singleTeam = `/user/${userId}/team/${teamId}`
         const singlePokemon = this.state.pokemon
         const pokedex = this.state.pokedex || []
         const pokedexTypes = pokedex.types || []
@@ -271,10 +302,10 @@ class Pokemon extends Component {
                                     <h1>#{pokedex.id} {pokedex.name} <button onClick={this.addPokemon}>+</button>
                                     </h1>
                                     <img src={pokedex.sprites ? pokedex.sprites.front_default : null} alt={pokedex.name} />
-                                    <h3>Type: {listOfTypes}</h3>
-                                    <h3>Height: {pokedex.height}</h3>
-                                    <h3>Weight: {pokedex.weight}</h3>
-                                    <h3>Moves: {listOfMoves}</h3>
+                                    <h5>Type: {listOfTypes}</h5>
+                                    <h5>Height: {pokedex.height}</h5>
+                                    <h5>Weight: {pokedex.weight}</h5>
+                                    <h5>Moves: {listOfMoves}</h5>
                                 </div>
                                 : null
                             }
@@ -286,19 +317,23 @@ class Pokemon extends Component {
                     </Pole>
                     <RightContainer>
                         <RightScreen>
-                            <h3>Pokemon on Team</h3>
+                            <h5>{this.state.team.name}</h5>
                             <img src={singlePokemon.sprites} alt="" />
                             <h1>{singlePokemon.name}</h1>
-                            <h3># {singlePokemon.id}</h3>
-                            <h3>Height: {singlePokemon.height}</h3>
-                            <h3>Weight: {singlePokemon.weight}</h3>
+                            <h5># {singlePokemon.id}</h5>
+                            <h5>Height: {singlePokemon.height}</h5>
+                            <h5>Weight: {singlePokemon.weight}</h5>
                             <h5>Moves: Please search the pokemon on the pokedex</h5>
                             <h5>Type: Please search on Pokedex</h5>
                         </RightScreen>
-                        <div>
+                        <Links>
                             <h6>Log Out</h6>
-                            <Link to='/login'><img src="https://vignette.wikia.nocookie.net/sagseries/images/4/4c/Pokeball.png/revision/latest?cb=20120731005210" alt="" width="40" height="40" /></Link>
-                        </div>
+                            <Link to='/login'><img src="https://vignette.wikia.nocookie.net/sagseries/images/4/4c/Pokeball.png/revision/latest?cb=20120731005210" alt="" width="30" height="20" /></Link>
+                            <h6>User</h6>
+                            <Link to={teamPage}><img src="https://vignette.wikia.nocookie.net/sagseries/images/4/4c/Pokeball.png/revision/latest?cb=20120731005210" alt="" width="30" height="20" /></Link>
+                            <h6>Team</h6>
+                            <Link to={singleTeam}><img src="https://vignette.wikia.nocookie.net/sagseries/images/4/4c/Pokeball.png/revision/latest?cb=20120731005210" alt="" width="30" height="20" /></Link>
+                        </Links>
                     </RightContainer>
 
                 </Container>

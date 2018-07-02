@@ -53,6 +53,16 @@ box-shadow: none;
     top: 20px;
     box-shadow: none;
 }
+h1{
+    font-family: 'Permanent Marker', cursive;
+}
+a {
+    font-family: 'Boogaloo', cursive;
+}
+input{
+    font-family: 'Kalam', cursive;
+
+}
 `
 const BlueDot = styled.div`
 position: absolute;

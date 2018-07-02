@@ -54,6 +54,12 @@ box-shadow: none;
     top: 20px;
     box-shadow: none;
 }
+a {
+    font-family: 'Boogaloo', cursive;
+}
+input{
+    font-family: 'Kalam', cursive;
+}
 `
 const BlueDot = styled.div`
 position: absolute;
@@ -135,6 +141,14 @@ width:80%;
 padding: 1vw;
 overflow: scroll;
 position: center;
+font-family: 'Press Start 2P', cursive;
+a{
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+}
+h1{
+    font-size: 13px;
+}
 `
 const RightContainer = styled.div`
 display: flex;
@@ -153,12 +167,28 @@ padding: 1vw;
 float: right;
 border: 1px solid black;
 overflow: scroll;
+font-family: 'Press Start 2P', cursive;
+a{
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+}
+h1{
+    font-size: 13px;
+}
 `
 const Container = styled.div`
 display: flex;
 flex-direction: row;
 margin: 2vh;
 height: 80%;
+`
+const Links = styled.div`
+display: flex;
+margin: 0 auto;
+h6{
+    font-family: 'Permanent Marker', cursive;
+
+}
 `
 class SingleTeamPage extends Component {
     state = {
@@ -266,6 +296,9 @@ class SingleTeamPage extends Component {
         this.getPokemonApi()
     }
     render() {
+        const userId = this.props.match.params.userId
+        const teamId = this.props.match.params.teamId
+        const teamPage = `/user/${userId}`
         const pokedex = this.state.pokedex || []
         const pokemon = this.state.team.pokemon || []
         const pokedexTypes = pokedex.types || []
@@ -275,8 +308,6 @@ class SingleTeamPage extends Component {
             )
         })
         const listOfPokemon = pokemon.map(pokemon => {
-            const userId = this.props.match.params.userId
-            const teamId = this.props.match.params.teamId
             const pokemonUrl = `/user/${userId}/team/${teamId}/pokemon/${pokemon._id}`
             return (
                 <div key={pokemon._id}>
@@ -354,10 +385,13 @@ class SingleTeamPage extends Component {
                                 : null
                             }
                         </RightScreen>
-                        <div>
+                        <Links>
                             <h6>Log Out</h6>
-                            <Link to='/login'><img src="https://vignette.wikia.nocookie.net/sagseries/images/4/4c/Pokeball.png/revision/latest?cb=20120731005210" alt="" width="40" height="40" /></Link>
-                        </div>
+                            <Link to='/login'><img src="https://vignette.wikia.nocookie.net/sagseries/images/4/4c/Pokeball.png/revision/latest?cb=20120731005210" alt="" width="30" height="30" /></Link>
+
+                            <h6>User</h6>
+                            <Link to={teamPage}><img src="https://vignette.wikia.nocookie.net/sagseries/images/4/4c/Pokeball.png/revision/latest?cb=20120731005210" alt="" width="30" height="30" /></Link>
+                        </Links>
                     </RightContainer>
                 </Container>
             </PokedexContainer>
