@@ -145,6 +145,7 @@ font-family: 'Press Start 2P', cursive;
 a{
     font-family: 'Press Start 2P', cursive;
     font-size: 10px;
+    text-decoration: none;
 }
 h1{
     font-size: 13px;
@@ -191,7 +192,7 @@ height: 80%;
 `
 const Links = styled.div`
 display: flex;
-margin: 0 auto;
+margin: auto;
 h6{
     font-family: 'Permanent Marker', cursive;
 

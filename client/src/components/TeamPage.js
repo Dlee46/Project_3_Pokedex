@@ -55,6 +55,7 @@ box-shadow: none;
 }
 a {
     font-family: 'Boogaloo', cursive;
+    text-decoration: none;
 }
 input {
     font-family: 'Kalam', cursive;
@@ -177,10 +178,11 @@ height: 80%;
 `
 const Links = styled.div`
 display: flex;
-margin: 0 auto;
+margin: auto;
 h6{
     font-family: 'Permanent Marker', cursive;
-
+    position: absolute;
+    margin-top: -20px;
 }
 `
 class TeamPage extends Component {

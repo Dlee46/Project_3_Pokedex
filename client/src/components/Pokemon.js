@@ -57,6 +57,7 @@ box-shadow: none;
 }
 a {
     font-family: 'Boogaloo', cursive;
+    text-decoration: none;
 }
 input{
     font-family: 'Kalam', cursive;
@@ -179,6 +180,10 @@ a{
 h1{
     font-size: 13px;
 }
+img{
+    width: 90%;
+    height: 70%;
+}
 `
 const Container = styled.div`
 display: flex;
@@ -188,7 +193,7 @@ height: 80%;
 `
 const Links = styled.div`
 display: flex;
-margin: 0 auto;
+margin: auto;
 h6{
     font-family: 'Permanent Marker', cursive;
 
