@@ -20,6 +20,9 @@ In project 3, the core was centered around React. Up until this time HBS was use
    - [Pokemon API](https://pokeapi.co/)
 6. Heroku
 7. GitHub
+8. Postman
+9. Compass
+10. Google Fonts
 
 Looking back on my previous projects I wanted to create something that involve more css. This project therefore was very difficult for a lot of reasons. The Back-end was a breeze, but when it came to connecting the express and react, the struggles started. It was difficult to understand how the state needed to be altered continuously to render the information from the DB. React in general has so much information and properties that made it difficult to understand in general within a weeks span of time. At this moment, with React being still a little hazy I would like to add more functionality for user experience. Also, to make this app more responsive since this was all css without any libraries.
 
