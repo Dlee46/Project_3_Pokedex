@@ -176,28 +176,7 @@ class LogInPage extends Component {
         })
     }
 
-    // handleUserIdChange = (event) => {
-    //     const inputName = event.target.name
-    //     const userInput = event.target.value
-    //     const user = { ...this.state.userId }
-    //     user[inputName] = userInput
-    //     this.setState({
-    //         user
-    //     })
-    // }
-    // handleUserIdSubmit = (event) => {
-    //     const user = this.state.userId.find((user) => user.userId === this.props.match.params.userId)
 
-    //     axios.get(`/api/users/${userId}`).then((res) => {
-    //         this.setState({
-    //             user: res.data.user,
-    //             team: res.data.user.team
-    //         })
-    //         return (
-    //             this.props.history.push(`/user/${userId}`)
-    //         )
-    //     })
-    // }
     render() {
         return (
             <PokedexContainer>
@@ -220,13 +199,6 @@ class LogInPage extends Component {
                     </YellowTriangle>
                     <LoginContainer>
                         <h1>Log In</h1>
-                        {/* <div>
-                            <input type="text"
-                                name="userId"
-                                placeholder="User ID"
-                                onChange={this.handleUserIdChange} />
-                            <button onClick={this.getTeamInfo}>Search</button>
-                        </div> */}
                         {this.props.users.map((user) => {
                             return (
                                 <div key={user._id}><Link key={user._id} to={`user/${user._id}`}>{user.userId}</Link></div>
