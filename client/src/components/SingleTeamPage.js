@@ -175,9 +175,9 @@ class SingleTeamPage extends Component {
         const teamId = this.props.match.params.teamId
         const newPokemon = { ...this.state.pokedex }
         axios.post(`/api/users/${userId}/team/${teamId}/pokemon`, newPokemon).then((res) => {
-            console.log(res.data)
+            console.log("LOOK HERE", res.data)
             this.setState({
-                team: res.data.user.team,
+                team: res.data.team,
                 showPokemon: false
             })
             return (
