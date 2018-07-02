@@ -149,6 +149,10 @@ a{
 h1{
     font-size: 13px;
 }
+button{
+    font-size: 14px;
+    font-family: 'Press Start 2P', cursive;
+}
 `
 const RightContainer = styled.div`
 display: flex;
@@ -174,6 +178,9 @@ a{
 }
 h1{
     font-size: 13px;
+    button{
+        font-family: 'Press Start 2P', cursive;
+    }
 }
 `
 const Container = styled.div`
@@ -188,6 +195,11 @@ margin: 0 auto;
 h6{
     font-family: 'Permanent Marker', cursive;
 
+}
+`
+const EditScreen = styled.div`
+button{
+    font-family: 'Permanent Marker', cursive;
 }
 `
 class SingleTeamPage extends Component {
@@ -313,7 +325,7 @@ class SingleTeamPage extends Component {
                 <div key={pokemon._id}>
                     <img src={pokemon.sprites} alt={pokemon.name} />
                     <Link to={pokemonUrl}>{pokemon.name}</Link>
-                    <button onClick={() => this.deletePokemon(pokemon._id)}>Delete</button>
+                    <button onClick={() => this.deletePokemon(pokemon._id)}>-</button>
                 </div>
             )
         })
@@ -338,7 +350,7 @@ class SingleTeamPage extends Component {
                             <h1>{this.state.team.name}</h1>
                             {listOfPokemon}
                         </LeftScreen>
-                        <div>
+                        <EditScreen>
                             {this.state.editTeamName ?
                                 <div>
                                     <form onSubmit={this.updateTeam}>
@@ -351,15 +363,15 @@ class SingleTeamPage extends Component {
                                 </div>
                                 : null
                             }
-                        </div>
-                        <div>
+                        </EditScreen>
+                        <EditScreen>
                             <button onClick={this.toggleEdit}>
                                 {this.state.editTeamName
                                     ? 'Finished'
                                     : 'Edit Team'
                                 }
                             </button>
-                        </div>
+                        </EditScreen>
                     </LeftContainer>
                     <Pole>
                         <MiniPole1></MiniPole1>
@@ -377,20 +389,20 @@ class SingleTeamPage extends Component {
                             </div>
                             {this.state.showPokemon ?
                                 <div>
-                                    <h1>#{pokedex.id} {pokedex.name}</h1>
+                                    <h1>#{pokedex.id} {pokedex.name} <button onClick={this.addPokemon}>+</button></h1>
                                     <img src={pokedex.sprites ? pokedex.sprites : null} alt={pokedex.name} />
                                     <h4>{listOfTypes}</h4>
-                                    <button onClick={this.addPokemon}>+</button>
+
                                 </div>
                                 : null
                             }
                         </RightScreen>
                         <Links>
-                            <h6>Log Out</h6>
                             <Link to='/login'><img src="https://vignette.wikia.nocookie.net/sagseries/images/4/4c/Pokeball.png/revision/latest?cb=20120731005210" alt="" width="30" height="30" /></Link>
+                            <h6>Log Out</h6>
 
-                            <h6>User</h6>
                             <Link to={teamPage}><img src="https://vignette.wikia.nocookie.net/sagseries/images/4/4c/Pokeball.png/revision/latest?cb=20120731005210" alt="" width="30" height="30" /></Link>
+                            <h6>User</h6>
                         </Links>
                     </RightContainer>
                 </Container>

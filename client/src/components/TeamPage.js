@@ -141,6 +141,10 @@ padding: 1vw;
 overflow: scroll;
 position: center;
 font-family: 'Press Start 2P', cursive;
+button{
+    font-size: 16px;
+    font-family: 'Press Start 2P', cursive;
+}
 `
 const RightContainer = styled.div`
 display: flex;
@@ -160,6 +164,10 @@ float: right;
 border: 1px solid black;
 overflow: scroll;
 font-family: 'Press Start 2P', cursive;
+button{
+    font-size: 14px;
+    font-family: 'Press Start 2P', cursive;
+}
 `
 const Container = styled.div`
 display: flex;
@@ -229,7 +237,7 @@ class TeamPage extends Component {
             return (
                 <div key={team._id}>
                     <Link to={teamUrl}>{team.name}</Link>
-                    <button onClick={() => this.deleteTeam(team._id)}>Delete</button>
+                    <button onClick={() => this.deleteTeam(team._id)}>-</button>
                 </div>
             )
         })
@@ -258,7 +266,7 @@ class TeamPage extends Component {
                                     name="name"
                                     placeholder="Team Name"
                                     onChange={this.handleChange} />
-                                <button>New Team</button>
+                                <button>+</button>
                             </form>
                         </LeftScreen>
 
@@ -272,8 +280,8 @@ class TeamPage extends Component {
                             {listOfTeams}
                         </RightScreen>
                         <Links>
-                            <h6>Log Out</h6>
                             <Link to='/login'><img src="https://vignette.wikia.nocookie.net/sagseries/images/4/4c/Pokeball.png/revision/latest?cb=20120731005210" alt="" width="40" height="40" /></Link>
+                            <h6>Log Out</h6>
                         </Links>
                     </RightContainer>
                 </Container>
