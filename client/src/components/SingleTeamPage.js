@@ -326,7 +326,10 @@ class SingleTeamPage extends Component {
                 <div key={pokemon._id}>
                     <img src={pokemon.sprites} alt={pokemon.name} />
                     <Link to={pokemonUrl}>{pokemon.name}</Link>
-                    <button onClick={() => this.deletePokemon(pokemon._id)}>-</button>
+                    {this.state.editTeamName ?
+                        <button onClick={() => this.deletePokemon(pokemon._id)}>-</button>
+                        : null
+                    }
                 </div>
             )
         })
