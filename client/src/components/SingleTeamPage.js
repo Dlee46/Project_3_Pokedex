@@ -190,13 +190,25 @@ flex-direction: row;
 margin: 2vh;
 height: 80%;
 `
-const Links = styled.div`
+const Links = styled(Link)`
 display: flex;
+flex-direction: column-reverse;
+justify-content: center;
+align-items: center;
 margin: auto;
+text-decoration: none;
 h6{
     font-family: 'Permanent Marker', cursive;
-
+    margin: 0;
 }
+`
+const ButtonStyle = styled.button`
+margin: 1%;
+width: 10%;
+`
+const Buttons = styled.div`
+display: flex;
+justify-content: center;
 `
 const EditScreen = styled.div`
 button{
@@ -402,16 +414,23 @@ class SingleTeamPage extends Component {
                                 : null
                             }
                         </RightScreen>
-                        <Links>
-                            <Link to='/login'><img src="https://vignette.wikia.nocookie.net/sagseries/images/4/4c/Pokeball.png/revision/latest?cb=20120731005210" alt="" width="30" height="30" /></Link>
-                            <h6>Log Out</h6>
-
-                            <Link to={teamPage}><img src="https://vignette.wikia.nocookie.net/sagseries/images/4/4c/Pokeball.png/revision/latest?cb=20120731005210" alt="" width="30" height="30" /></Link>
-                            <h6>User</h6>
-                        </Links>
+                        <Buttons>
+                            <ButtonStyle>
+                                <Links to='/login'>
+                                    <img src="http://web.mit.edu/pokemon/images/ultraball.png" alt="" width="30" height="30" />
+                                    <h6>Log Out</h6>
+                                </Links>
+                            </ButtonStyle>
+                            <ButtonStyle>
+                                <Links to={teamPage}>
+                                    <img src="http://web.mit.edu/pokemon/images/masterball.png" alt="" width="30" height="30" />
+                                    <h6>User</h6>
+                                </Links>
+                            </ButtonStyle>
+                        </Buttons>
                     </RightContainer>
                 </Container>
-            </PokedexContainer>
+            </PokedexContainer >
         );
     }
 }

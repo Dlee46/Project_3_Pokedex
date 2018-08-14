@@ -74,11 +74,19 @@ background: skyblue;
 margin: 0.2%;
 `
 const LoginContainer = styled.div`
-margin:10%;
+margin:5%;
+overflow:scroll;
 `
 
 const CreateUser = styled.div`
-margin: 20%;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+margin: 1%;
+input{
+    margin: 4%;
+}
 `
 const PokedexLid = styled.div`
 border: 2px solid black;
@@ -216,6 +224,7 @@ class LogInPage extends Component {
                                 value={this.state.name}
                                 onChange={this.handleChange}
                             />
+                            <br />
                             <input
                                 type="text"
                                 name="userId"
@@ -223,7 +232,10 @@ class LogInPage extends Component {
                                 value={this.state.userId}
                                 onChange={this.handleChange}
                             />
-                            <button type="submit">Create</button>
+                            <br />
+                            <button type="submit">
+                                <img src="https://upload.wikimedia.org/wikipedia/en/3/39/Pokeball.PNG" alt="" width="30" height="30" />
+                            </button>
                         </form>
                     </CreateUser>
                     <BottomOval className="bottomOval"></BottomOval>
@@ -234,3 +246,4 @@ class LogInPage extends Component {
 }
 
 export default LogInPage;
+

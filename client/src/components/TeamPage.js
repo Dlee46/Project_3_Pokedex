@@ -150,6 +150,7 @@ button{
 const RightContainer = styled.div`
 display: flex;
 flex-direction: column;
+align-items: center;
 position: relative;
 width: 45%;
 padding: 1vw;
@@ -175,14 +176,20 @@ flex-direction: row;
 margin: 2vh;
 height: 80%;
 `
-const Links = styled.div`
+const Links = styled(Link)`
 display: flex;
+flex-direction: column-reverse;
+justify-content: center;
+align-items: center;
 margin: auto;
 h6{
     font-family: 'Permanent Marker', cursive;
-    position: absolute;
-    margin-top: -20px;
+    margin: 0;
 }
+`
+const ButtonStyle = styled.button`
+margin: 1%;
+width: 10%;
 `
 class TeamPage extends Component {
     state = {
@@ -280,10 +287,12 @@ class TeamPage extends Component {
                         <RightScreen>
                             {listOfTeams}
                         </RightScreen>
-                        <Links>
-                            <Link to='/login'><img src="https://vignette.wikia.nocookie.net/sagseries/images/4/4c/Pokeball.png/revision/latest?cb=20120731005210" alt="" width="40" height="40" /></Link>
-                            <h6>Log Out</h6>
-                        </Links>
+                        <ButtonStyle>
+                            <Links to='/login'>
+                                <img src="http://web.mit.edu/pokemon/images/ultraball.png" alt="" width="30" height="30" />
+                                <h6>Log Out</h6>
+                            </Links>
+                        </ButtonStyle>
                     </RightContainer>
                 </Container>
             </PokedexContainer>

@@ -10,7 +10,7 @@ height: 80vh;
 background: red;
 text-align: center;
 border-radius:5%;
-margin:10px 20px;
+margin:5% 10%;
 position: justify;
 border: 2px solid black;
 box-shadow: outset 1px 1px 7px 4px;
@@ -21,6 +21,7 @@ background: white;
 height: 70px;
 width: 70px;
 box-shadow: none;
+margin: 1%;
 }
 .redDot{
     position:absolute;
@@ -29,8 +30,8 @@ box-shadow: none;
     width: 20px;
     background: red;
     border: 1px solid black;
-    left: 120px;
-    top: 20px;
+    left: 8%;
+    top: 3%;
     box-shadow: none;
 }
 .yellowDot{
@@ -40,8 +41,8 @@ box-shadow: none;
     width: 20px;
     background: yellow;
     border: 1px solid black;
-    left: 150px;
-    top: 20px;
+    left: 10%;
+    top: 3%;
     box-shadow: none;
 }
 .greenDot{
@@ -51,13 +52,12 @@ box-shadow: none;
     width: 20px;
     background: green;
     border: 1px solid black;
-    left: 180px;
-    top: 20px;
+    left: 12%;
+    top: 3%;
     box-shadow: none;
 }
 a {
     font-family: 'Boogaloo', cursive;
-    text-decoration: none;
 }
 input{
     font-family: 'Kalam', cursive;
@@ -73,44 +73,44 @@ margin: 0.2%;
 `
 const LidTopBorder = styled.div`
     position: absolute;
-    top: 1.3vh;
-    right:1vh;
-    border-top: 8vw solid black;
-    width: 45vw;
+    top: 9.2vh;
+    right:18.5vh;
+    border-top: 4.2vw solid black;
+    width: 38.1vw;
     height:0;
 `
 const InnerTop = styled.div`
 position: absolute;
-    top: 1.1vh;
-    right:-.1vh;
-    border-top: 8vw solid white;
-    width: 46vw;
+    top: 6.7vh;
+    right:16vh;
+    border-top: 5.4vw solid white;
+    width: 39.3vw;
     height:0;
 `
 const Trapezoid = styled.div`
 position: absolute;
-top: 8.5vh;
-right: 2.8vh;
-border-top: 6vw solid black;
-border-left: 5.4vh solid transparent;
+top: 16.7vh;
+right: 18.5vh;
+border-top: 2vw solid black;
+border-left: 4vh solid transparent;
 border-right: 0 solid transparent;
 height: 0;
-width: 13vw;
+width: 17vw;
 `
 const InnterTrapezoid = styled.div`
 position: absolute;
-top: 8.2vh;
-right: 0vh;
-border-top: 5.9vw solid white;
-border-left: 5.4vh solid transparent;
+top: 16.7vh;
+right: 16vh;
+border-top: 1.9vw solid white;
+border-left: 3.7vh solid transparent;
 border-right: 0 solid transparent;
 height: 0;
-width: 16vw;
+width: 18.3vw;
 `
 const Pole = styled.div`
-    width: 5%;
+    width: 4%;
     border-right: 2px solid black;
-    height: 114%;
+    height: 113.8%;
     margin-top: -5.5vh;
 `
 const MiniPole1 = styled.div`
@@ -130,8 +130,9 @@ border-right: none;
 `
 const LeftContainer = styled.div`
 position:relative;
-width: 58%;
-padding: 1vw;
+width: 50%;
+padding: 1%;
+margin-top:1%;
 `
 const LeftScreen = styled.div`
 background-color: whitesmoke;
@@ -189,13 +190,25 @@ flex-direction: row;
 margin: 2vh;
 height: 80%;
 `
-const Links = styled.div`
+const Links = styled(Link)`
 display: flex;
+flex-direction: column-reverse;
+justify-content: center;
+align-items: center;
 margin: auto;
+text-decoration: none;
 h6{
     font-family: 'Permanent Marker', cursive;
-
+    margin: 0;
 }
+`
+const ButtonStyle = styled.button`
+margin: 1%;
+width: 10%;
+`
+const Buttons = styled.div`
+display: flex;
+justify-content: center;
 `
 class Pokemon extends Component {
     state = {
@@ -331,14 +344,26 @@ class Pokemon extends Component {
                             <h5>Moves: Please search the pokemon on the pokedex</h5>
                             <h5>Type: Please search on Pokedex</h5>
                         </RightScreen>
-                        <Links>
-                            <Link to='/login'><img src="https://vignette.wikia.nocookie.net/sagseries/images/4/4c/Pokeball.png/revision/latest?cb=20120731005210" alt="" width="30" height="20" /></Link>
-                            <h6>Log Out</h6>
-                            <Link to={teamPage}><img src="https://vignette.wikia.nocookie.net/sagseries/images/4/4c/Pokeball.png/revision/latest?cb=20120731005210" alt="" width="30" height="20" /></Link>
-                            <h6>User</h6>
-                            <Link to={singleTeam}><img src="https://vignette.wikia.nocookie.net/sagseries/images/4/4c/Pokeball.png/revision/latest?cb=20120731005210" alt="" width="30" height="20" /></Link>
-                            <h6>Team</h6>
-                        </Links>
+                        <Buttons>
+                            <ButtonStyle>
+                                <Links to='/login'>
+                                    <img src="http://web.mit.edu/pokemon/images/ultraball.png" alt="" width="30" height="30" />
+                                    <h6>Log Out</h6>
+                                </Links>
+                            </ButtonStyle>
+                            <ButtonStyle>
+                                <Links to={teamPage}>
+                                    <img src="http://web.mit.edu/pokemon/images/masterball.png" alt="" width="30" height="30" />
+                                    <h6>User</h6>
+                                </Links>
+                            </ButtonStyle>
+                            <ButtonStyle>
+                                <Links to={singleTeam}>
+                                    <img src="http://pokemon.mit.edu/images/greatball.png" alt="" width="30" height="30" />
+                                    <h6>Team</h6>
+                                </Links>
+                            </ButtonStyle>
+                        </Buttons>
                     </RightContainer>
 
                 </Container>
