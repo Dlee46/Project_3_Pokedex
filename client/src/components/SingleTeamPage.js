@@ -9,7 +9,7 @@ height: 80vh;
 background: red;
 text-align: center;
 border-radius:5%;
-margin:10px 20px;
+margin:5% 10%;
 position: justify;
 border: 2px solid black;
 box-shadow: outset 1px 1px 7px 4px;
@@ -20,6 +20,7 @@ background: white;
 height: 70px;
 width: 70px;
 box-shadow: none;
+margin: 1%;
 }
 .redDot{
     position:absolute;
@@ -28,8 +29,8 @@ box-shadow: none;
     width: 20px;
     background: red;
     border: 1px solid black;
-    left: 120px;
-    top: 20px;
+    left: 8%;
+    top: 3%;
     box-shadow: none;
 }
 .yellowDot{
@@ -39,8 +40,8 @@ box-shadow: none;
     width: 20px;
     background: yellow;
     border: 1px solid black;
-    left: 150px;
-    top: 20px;
+    left: 10%;
+    top: 3%;
     box-shadow: none;
 }
 .greenDot{
@@ -50,8 +51,8 @@ box-shadow: none;
     width: 20px;
     background: green;
     border: 1px solid black;
-    left: 180px;
-    top: 20px;
+    left: 12%;
+    top: 3%;
     box-shadow: none;
 }
 a {
@@ -71,44 +72,44 @@ margin: 0.2%;
 `
 const LidTopBorder = styled.div`
     position: absolute;
-    top: 1.3vh;
-    right:1vh;
-    border-top: 8vw solid black;
-    width: 45vw;
+    top: 9.2vh;
+    right:18.5vh;
+    border-top: 4.2vw solid black;
+    width: 38.1vw;
     height:0;
 `
 const InnerTop = styled.div`
 position: absolute;
-    top: 1.1vh;
-    right:-.1vh;
-    border-top: 8vw solid white;
-    width: 46vw;
+    top: 6.7vh;
+    right:16vh;
+    border-top: 5.4vw solid white;
+    width: 39.3vw;
     height:0;
 `
 const Trapezoid = styled.div`
 position: absolute;
-top: 8.5vh;
-right: 2.8vh;
-border-top: 6vw solid black;
-border-left: 5.4vh solid transparent;
+top: 16.7vh;
+right: 18.5vh;
+border-top: 2vw solid black;
+border-left: 4vh solid transparent;
 border-right: 0 solid transparent;
 height: 0;
-width: 13vw;
+width: 17vw;
 `
 const InnterTrapezoid = styled.div`
 position: absolute;
-top: 8.2vh;
-right: 0vh;
-border-top: 5.9vw solid white;
-border-left: 5.4vh solid transparent;
+top: 16.7vh;
+right: 16vh;
+border-top: 1.9vw solid white;
+border-left: 3.7vh solid transparent;
 border-right: 0 solid transparent;
 height: 0;
-width: 16vw;
+width: 18.3vw;
 `
 const Pole = styled.div`
-    width: 5%;
+    width: 4%;
     border-right: 2px solid black;
-    height: 114%;
+    height: 113.8%;
     margin-top: -5.5vh;
 `
 const MiniPole1 = styled.div`
@@ -128,9 +129,9 @@ border-right: none;
 `
 const LeftContainer = styled.div`
 position:relative;
-/* border: 1px solid black; */
-width: 58%;
-padding: 1vw;
+width: 50%;
+padding: 1%;
+margin-top:1%;
 `
 const LeftScreen = styled.div`
 background-color: whitesmoke;
@@ -162,7 +163,6 @@ position: relative;
 width: 45%;
 padding: 1vw;
 padding-left: 45px;
-/* border: 1px solid black; */
 `
 const RightScreen = styled.div`
 background-color:whitesmoke;
@@ -217,16 +217,17 @@ class SingleTeamPage extends Component {
         const userId = this.props.match.params.userId
         const teamId = this.props.match.params.teamId
         const newPokemon = { ...this.state.pokedex }
-        axios.post(`/api/users/${userId}/team/${teamId}/pokemon`, newPokemon).then((res) => {
-            console.log("LOOK HERE", res.data)
-            this.setState({
-                team: res.data.team,
-                showPokemon: false
+        axios.post(`/api/users/${userId}/team/${teamId}/pokemon`, newPokemon)
+            .then((res) => {
+                console.log("LOOK HERE", res.data)
+                this.setState({
+                    team: res.data.team,
+                    showPokemon: false
+                })
+                return (
+                    this.props.history.push(`/user/${userId}/team/${teamId}`)
+                )
             })
-            return (
-                this.props.history.push(`/user/${userId}/team/${teamId}`)
-            )
-        })
     }
     toggleEdit = () => {
         const editTeamName = !this.state.editTeamName
@@ -292,17 +293,17 @@ class SingleTeamPage extends Component {
                     pokedex,
                     showPokemon: true
                 })
-                // console.log(this.state.pokedex)
             })
     }
     deletePokemon = (pokemonId) => {
         const userId = this.props.match.params.userId
         const teamId = this.props.match.params.teamId
-        axios.delete(`/api/users/${userId}/team/${teamId}/pokemon/${pokemonId}`).then((res) => {
-            this.setState({
-                team: res.data.team
+        axios.delete(`/api/users/${userId}/team/${teamId}/pokemon/${pokemonId}`)
+            .then((res) => {
+                this.setState({
+                    team: res.data.team
+                })
             })
-        })
     }
     componentDidMount() {
         this.getTeamInfo()

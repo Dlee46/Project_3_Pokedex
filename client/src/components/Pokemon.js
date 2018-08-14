@@ -130,7 +130,6 @@ border-right: none;
 `
 const LeftContainer = styled.div`
 position:relative;
-/* border: 1px solid black; */
 width: 58%;
 padding: 1vw;
 `
@@ -162,7 +161,6 @@ position: relative;
 width: 45%;
 padding: 1vw;
 padding-left: 45px;
-/* border: 1px solid black; */
 `
 const RightScreen = styled.div`
 background-color:whitesmoke;
@@ -292,7 +290,6 @@ class Pokemon extends Component {
                     <InnterTrapezoid></InnterTrapezoid>
                 </div>
                 <Container>
-                    {/* <div> */}
 
                     <LeftContainer>
                         <LeftScreen>

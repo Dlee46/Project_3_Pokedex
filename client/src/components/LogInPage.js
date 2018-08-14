@@ -4,11 +4,11 @@ import axios from 'axios'
 import styled from 'styled-components'
 
 const PokedexContainer = styled.div`
-height: 100vh;
+height: 80vh;
 background: red;
 text-align: center;
 border-radius:5%;
-margin:10px 20px;
+margin:5% 30%;
 position: justify;
 border: 2px solid black;
 box-shadow: outset 1px 1px 7px 4px;
@@ -19,6 +19,7 @@ background: white;
 height: 70px;
 width: 70px;
 box-shadow: none;
+margin: 3%;
 }
 .redDot{
     position:absolute;
@@ -73,66 +74,66 @@ background: skyblue;
 margin: 0.2%;
 `
 const LoginContainer = styled.div`
-margin:10% 25vh;
+margin:10%;
 `
 
 const CreateUser = styled.div`
-margin: 30% 25vh;
+margin: 20%;
 `
 const PokedexLid = styled.div`
 border: 2px solid black;
-border-radius: 0 0 5vh 5vh;
-height: 88.5vh;
+border-radius: 0 0 5% 5%;
+height: 65.7vh;
 background: red;
 `
 const LidTopBorder = styled.div`
     position: absolute;
-    top: 8vh;
-    right: 2.8vw;
-    border-bottom: 6vw solid black;
-    border-left: 5.5vw solid transparent;
+    top: 18vh;
+    right: 30vw;
+    border-bottom: 3vw solid black;
+    border-left: 3.5vw solid transparent;
     border-right: 0 solid transparent;
-    width: 45vw;
-    height:0;
+    width: 17%;
+    height: 0;
 `
 const Trapezoid = styled.div`
 position: absolute;
-top: 8.3vh;
-right: 3.3vw;
-border-bottom: 6vw solid red;
-border-left: 5.4vw solid transparent;
+top: 18.4vh;
+right: 30.3vw;
+border-bottom: 4vw solid red;
+border-left: 4.5vw solid transparent;
 border-right: 0 solid transparent;
 height: 0;
-width: 44.5vw;
+width: 16.7%;
 `
 const YellowTriangle = styled.div`
 position: absolute;
 width: 0;
 height: 0;
-margin: 40% 30px;
-border-top: 5vw solid transparent;
-border-bottom: 5vw solid transparent;
-border-left: 5vw solid black;
+margin:28vh 2vw;
+border-top: 2vw solid transparent;
+border-bottom: 2vw solid transparent;
+border-left: 2vw solid black;
 `
 const InnerTriangle = styled.div`
-border-top: 3.5vw solid transparent;
-border-bottom: 3.5vw solid transparent;
-border-left: 3.5vw solid yellow;
+border-top: 1.5vw solid transparent;
+border-bottom: 1.5vw solid transparent;
+border-left: 1.5vw solid yellow;
 position: relative;
-margin: 40% 8px;
+margin: 0 4vw;
 width: 0;
 height:0;
-top: -3.5vw;
-right: 5.5vw;
+top: -1.5vw;
+right: 5.8vw;
 `
 const BottomOval = styled.div`
 position: absolute;
 border-radius: 15px;
 border: 1px solid black;
 height: 3%;
-width: 60%;
-bottom: 3%;
-left: 20vw;
+width: 30%;
+bottom: 15%;
+left: 35.5vw;
 box-shadow: inset 1px 1px 1px 1px;
 `
 const Pole = styled.div`
@@ -151,7 +152,7 @@ border-right: none;
 const MiniPole2 = styled.div`
 height: 10vh;
 background-color: red;
-margin-top: 50vh;
+margin-top: 30vh;
 margin-bottom: 10px;
 border: 2px solid black;
 border-right:none;
