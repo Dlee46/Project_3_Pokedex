@@ -4,6 +4,25 @@ import axios from 'axios'
 import styled from 'styled-components'
 
 const PokedexContainer = styled.div`
+@media (max-width:450px){
+    height: 100vh;
+    margin:0;
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+.bigWhiteDot{
+display:none;
+}
+.redDot{
+    display:none;
+}
+.yellowDot{
+    display:none;
+}
+.greenDot{
+    display:none
+}
+}
 height: 80vh;
 background: red;
 text-align: center;
@@ -66,6 +85,9 @@ input{
 }
 `
 const BlueDot = styled.div`
+@media (max-width: 450px){
+    display:none;
+}
 position: absolute;
 height: 65px;
 width: 65px;
@@ -74,11 +96,18 @@ background: skyblue;
 margin: 0.2%;
 `
 const LoginContainer = styled.div`
+@media (max-width: 450px){
+margin:0;
+height: 40vh;
+}
 margin:5%;
 overflow:scroll;
 `
 
 const CreateUser = styled.div`
+@media (max-width: 450px){
+margin-top: 2%;
+}
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -89,12 +118,18 @@ input{
 }
 `
 const PokedexLid = styled.div`
-border: 2px solid black;
-border-radius: 0 0 5% 5%;
-height: 65.7vh;
-background: red;
+@media (min-width: 451px){
+    border: 2px solid black;
+    border-radius: 0 0 5% 5%;
+    height: 65.7vh;
+    background: red;
+}
+height:100%;
 `
 const LidTopBorder = styled.div`
+@media (max-width: 450px){
+    display:none;
+}
     position: absolute;
     top: 18vh;
     right: 30vw;
@@ -105,6 +140,9 @@ const LidTopBorder = styled.div`
     height: 0;
 `
 const Trapezoid = styled.div`
+@media (max-width: 450px){
+    display:none;
+}
 position: absolute;
 top: 18.4vh;
 right: 30.3vw;
@@ -115,6 +153,9 @@ height: 0;
 width: 16.7%;
 `
 const YellowTriangle = styled.div`
+@media (max-width: 450px){
+    display:none;
+}
 position: absolute;
 width: 0;
 height: 0;
@@ -124,6 +165,9 @@ border-bottom: 2vw solid transparent;
 border-left: 2vw solid black;
 `
 const InnerTriangle = styled.div`
+@media (max-width: 450px){
+    display:none;
+}
 border-top: 1.5vw solid transparent;
 border-bottom: 1.5vw solid transparent;
 border-left: 1.5vw solid yellow;
@@ -135,6 +179,9 @@ top: -1.5vw;
 right: 5.8vw;
 `
 const BottomOval = styled.div`
+@media (max-width: 450px){
+    display:none;
+}
 position: absolute;
 border-radius: 15px;
 border: 1px solid black;
@@ -145,11 +192,17 @@ left: 35.5vw;
 box-shadow: inset 1px 1px 1px 1px;
 `
 const Pole = styled.div`
+@media (max-width: 450px){
+    display:none;
+}
 width: 5%;
 height: 100%;
 float: right;
 `
 const MiniPole1 = styled.div`
+@media (max-width: 450px){
+    display:none;
+}
 height: 10vh;
 background-color: red;
 margin-top: 5vh;
@@ -158,6 +211,9 @@ border: 2px solid black;
 border-right: none;
 `
 const MiniPole2 = styled.div`
+@media (max-width: 450px){
+    display:none;
+}
 height: 10vh;
 background-color: red;
 margin-top: 30vh;
