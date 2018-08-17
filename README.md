@@ -1,5 +1,7 @@
 # Project_3_Pokedex
 
+## Project Link
+
 [Pokedex](https://project3-pokedex.herokuapp.com/)
 
 ## Overview:
