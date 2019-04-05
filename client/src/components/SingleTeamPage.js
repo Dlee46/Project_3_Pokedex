@@ -5,6 +5,25 @@ import PokedexType from './PokedexType'
 import styled from 'styled-components'
 
 const PokedexContainer = styled.div`
+@media (max-width:450px){
+    height: 100vh;
+    margin:0;
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+.bigWhiteDot{
+display:none;
+}
+.redDot{
+    display:none;
+}
+.yellowDot{
+    display:none;
+}
+.greenDot{
+    display:none
+}
+}
 height: 80vh;
 background: red;
 text-align: center;
@@ -63,6 +82,9 @@ input{
 }
 `
 const BlueDot = styled.div`
+@media (max-width: 450px){
+    display:none;
+}
 position: absolute;
 height: 65px;
 width: 65px;
@@ -71,6 +93,9 @@ background: skyblue;
 margin: 0.2%;
 `
 const LidTopBorder = styled.div`
+@media (max-width: 450px){
+    display:none;
+}
     position: absolute;
     top: 9.2vh;
     right:18.5vh;
@@ -79,6 +104,9 @@ const LidTopBorder = styled.div`
     height:0;
 `
 const InnerTop = styled.div`
+@media (max-width: 450px){
+    display:none;
+}
 position: absolute;
     top: 6.7vh;
     right:16vh;
@@ -87,6 +115,9 @@ position: absolute;
     height:0;
 `
 const Trapezoid = styled.div`
+@media (max-width: 450px){
+    display:none;
+}
 position: absolute;
 top: 16.7vh;
 right: 18.5vh;
@@ -97,6 +128,9 @@ height: 0;
 width: 17vw;
 `
 const InnterTrapezoid = styled.div`
+@media (max-width: 450px){
+    display:none;
+}
 position: absolute;
 top: 16.7vh;
 right: 16vh;
@@ -107,12 +141,18 @@ height: 0;
 width: 18.3vw;
 `
 const Pole = styled.div`
+@media (max-width: 450px){
+    display:none;
+}
     width: 4%;
     border-right: 2px solid black;
     height: 113.8%;
     margin-top: -5.5vh;
 `
 const MiniPole1 = styled.div`
+@media (max-width: 450px){
+    display:none;
+}
 height: 10vh;
 background-color: red;
 margin-top: 5vh;
@@ -121,6 +161,9 @@ border: 2px solid black;
 border-right: none;
 `
 const MiniPole2 = styled.div`
+@media (max-width: 450px){
+    display:none;
+}
 height: 10vh;
 background-color: red;
 margin-top: 30vh;
@@ -134,6 +177,11 @@ padding: 1%;
 margin-top:1%;
 `
 const LeftScreen = styled.div`
+@media (max-width:450px){
+height: 50%;
+width: 90%;
+border: 1px solid black;
+}
 background-color: whitesmoke;
 border-radius: 20px;
 border: 20px solid gray;
@@ -157,6 +205,9 @@ button{
 }
 `
 const RightContainer = styled.div`
+@media (max-width:450px){
+padding: 1%;
+}
 display: flex;
 flex-direction: column;
 position: relative;
@@ -165,6 +216,11 @@ padding: 1vw;
 padding-left: 45px;
 `
 const RightScreen = styled.div`
+@media (max-width:450px){
+height: 50%;
+width: 90%;
+border-radius: 20px;
+}
 background-color:whitesmoke;
 height:60%;
 width: 90%;
@@ -185,6 +241,9 @@ h1{
 }
 `
 const Container = styled.div`
+@media (max-width:450px){
+margin: 0;
+}
 display: flex;
 flex-direction: row;
 margin: 2vh;
